@@ -16,5 +16,7 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
-logging:
-  level: debug
+
+secret:
+  token:
+    key: asdfdfea!dfeasdfe
