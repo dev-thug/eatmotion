@@ -11,14 +11,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ShopService {
 
-	private final ShopRepository shopRepository;
+  private final ShopRepository shopRepository;
 
-	public List<Shop> findBynameContaining(String keyword) {
-		return shopRepository.findBynameContaining(keyword);
-	}
+  public List<Shop> findBynameContaining(String keyword) {
+    return shopRepository.findBynameContaining(keyword);
+  }
 
-	public Shop shopTemp(Shop shop) {
-		return shopRepository.save(shop);
-	}
-
+  public Shop shopTemp(Shop shop) {
+    return shopRepository.save(shop);
+  }
 }

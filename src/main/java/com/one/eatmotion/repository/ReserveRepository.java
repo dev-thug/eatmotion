@@ -7,9 +7,7 @@ import java.util.List;
 
 public interface ReserveRepository extends JpaRepository<Reserve, Long> {
 
+  List<Reserve> getListByUserId(Long userId);
 
-	List<Reserve> getListByUserId(Long userId);
-
-	Reserve getDetailListById(Long id);
-
+  Reserve getDetailListById(Long id);
 }
