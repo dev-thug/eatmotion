@@ -1,5 +1,6 @@
 package com.one.eatmotion.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,16 +26,19 @@ public class User implements UserDetails {
     @Id
     Long id;
 
+    @Column(unique = true)
     private String email;
 
     private String name;
 
+    @JsonIgnore
     private String password;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<SimpleGrantedAuthority> roles = new ArrayList<>();
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
