@@ -7,9 +7,7 @@ import java.util.List;
 
 public interface ReserveRepository extends JpaRepository<Reserve, Long> {
 
-	/*
-	 *  리스트 만들어고싶음 where userID = {userId}로
-	 * */
+
 	List<Reserve> getListByUserId(Long userId);
 
 	Reserve getDetailListById(Long id);
