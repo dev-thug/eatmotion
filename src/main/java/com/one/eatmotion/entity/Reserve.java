@@ -14,9 +14,15 @@ public class Reserve {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    Long id;
+    Long id; //ReserveId
 
-    String name;
+    Long userId;
+
+    Long storeId;
+
+    String reserveDate;
+
+    Integer reserveNumberOfPeople;
 
 
 //    @ManyToOne
