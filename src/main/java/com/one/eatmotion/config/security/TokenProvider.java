@@ -1,6 +1,7 @@
 package com.one.eatmotion.config.security;
 
 
+import com.one.eatmotion.advice.exception.NotFoundUserException;
 import com.one.eatmotion.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -32,7 +33,7 @@ public class TokenProvider {
 
     private final long validTime = 1000L * 60 * 60 * 24;
 
-    //    private final UserDetailsService userDetailsService;
+
     private final UserRepository userRepository;
 
     @PostConstruct
@@ -57,8 +58,8 @@ public class TokenProvider {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
-    public Authentication getAuthentication(String token) throws Exception {
-        UserDetails userDetails = userRepository.findById(Long.valueOf(this.getUserId(token))).orElseThrow(Exception::new); // userDetailsService.loadUserByUsername(this.getEmail(token));
+    public Authentication getAuthentication(String token) {
+        UserDetails userDetails = userRepository.findById(Long.valueOf(this.getUserId(token))).orElseThrow(NotFoundUserException::new); // userDetailsService.loadUserByUsername(this.getEmail(token));
 
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
