@@ -15,7 +15,6 @@ public class SentimentController {
 
 	private final SentimentService sentimentService;
 
-
 	/**
 	 *
 	 * @param text
