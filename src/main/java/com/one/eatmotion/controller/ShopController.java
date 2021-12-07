@@ -33,6 +33,17 @@ public class ShopController {
     return shopService.findBynameContaining(keyword);
   }
 
+  /**
+   * @param x
+   * @param y
+   * @param meter
+   * @return shopList(meter)
+   */
+  @GetMapping("/shop/search/{meter}")
+  public List<Shop> shopSearchByCoordinates(Double x, Double y, int meter) {
+    return null;
+  }
+
   @PostMapping("/shop/temp")
   public Shop shopTemp(@RequestBody Shop shop) {
     return shopService.shopTemp(shop);
