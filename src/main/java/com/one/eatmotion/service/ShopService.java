@@ -13,6 +13,7 @@ public class ShopService {
 
   private final ShopRepository shopRepository;
 
+
   public List<Shop> findBynameContaining(String keyword) {
     return shopRepository.findBynameContaining(keyword);
   }

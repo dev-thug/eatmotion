@@ -2,10 +2,7 @@ package com.one.eatmotion.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -15,11 +12,15 @@ import javax.persistence.Id;
 @Setter
 public class Review {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-		private String content;
+    private String content;
 
+    @ManyToOne
+    private User user;
 
+    @ManyToOne
+    private Shop shop;
 }

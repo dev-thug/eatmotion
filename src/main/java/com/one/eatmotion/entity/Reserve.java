@@ -12,18 +12,19 @@ import javax.persistence.*;
 @Setter
 public class Reserve {
 
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
-  Long id; // ReserveId
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    private Long id; // ReserveId
 
-  Long userId;
+    private Long storeId;
 
-  Long storeId;
+    private String reserveDate;
 
-  String reserveDate;
+    private Integer reserveNumberOfPeople;
 
-  Integer reserveNumberOfPeople;
+    @ManyToOne
+    private User user;
 
-  //    @ManyToOne
-  //    User user;
+    @ManyToOne
+    private Shop shop;
 }
