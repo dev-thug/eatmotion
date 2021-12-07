@@ -14,15 +14,15 @@ import javax.persistence.Id;
 @Builder
 @Setter
 public class Shop {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    Long id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  Long id;
 
-    String name;
+  String name;
 
-    Long x;
+  Long x;
 
-    Long y;
+  Long y;
 
-    // TODO: 2021-12-04 음식점 API에서 필요한 정보 추출후 담을 변수 선언
+  // TODO: 2021-12-04 음식점 API에서 필요한 정보 추출후 담을 변수 선언
 }

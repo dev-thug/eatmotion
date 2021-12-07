@@ -11,23 +11,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReserveService {
 
-	private final ReserveRepository reserveRepository;
+  private final ReserveRepository reserveRepository;
 
-	public List<Reserve> getListByUserId(Long userId) {
-		return reserveRepository.getListByUserId(userId);
-	}
+  public List<Reserve> getListByUserId(Long userId) {
+    return reserveRepository.getListByUserId(userId);
+  }
 
-	public Reserve makeReserve(Reserve reserve) {
-		return reserveRepository.save(reserve);
-	}
+  public Reserve makeReserve(Reserve reserve) {
+    return reserveRepository.save(reserve);
+  }
 
-	public Reserve getDetailListByReserveId(Long id) {
-		return reserveRepository.getDetailListById(id);
-	}
+  public Reserve getDetailListByReserveId(Long id) {
+    return reserveRepository.getDetailListById(id);
+  }
 
-	public void deleteReserve(Long reserveId) {
-		reserveRepository.deleteById(reserveId);
-	}
-
-
+  public void deleteReserve(Long reserveId) {
+    reserveRepository.deleteById(reserveId);
+  }
 }
