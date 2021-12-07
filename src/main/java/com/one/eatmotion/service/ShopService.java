@@ -20,4 +20,8 @@ public class ShopService {
   public Shop shopTemp(Shop shop) {
     return shopRepository.save(shop);
   }
+
+  public List<Shop> findAll() {
+    return shopRepository.findAll();
+  }
 }
