@@ -21,20 +21,24 @@ import java.util.List;
 @RequestMapping(value = "/api")
 public class UserController {
 
-    private final UserService userService;
+  private final UserService userService;
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(
+        name = "AUTH-TOKEN",
+        value = "허가된 유요한 토큰",
+        required = true,
+        dataType = "String",
+        paramType = "header")
+  })
+  @ApiOperation(value = "내 정보 조회", notes = "회원이 자신의 정보를 조회")
+  @GetMapping(value = "me")
+  public ResponseEntity<User> findMe() {
+    return ResponseEntity.ok(userService.findUser());
+  }
 
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "AUTH-TOKEN", value = "허가된 유요한 토큰", required = true, dataType = "String", paramType = "header")
-    })
-    @ApiOperation(value = "내 정보 조회", notes = "회원이 자신의 정보를 조회")
-    @GetMapping(value = "me")
-    public ResponseEntity<User> findMe() {
-        return ResponseEntity.ok(userService.findUser());
-    }
-    @GetMapping(value = "users")
-    public List<User> users() {
-        return userService.findAll();
-    }
-
+  @GetMapping(value = "users")
+  public List<User> users() {
+    return userService.findAll();
+  }
 }

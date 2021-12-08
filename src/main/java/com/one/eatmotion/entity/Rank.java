@@ -15,9 +15,9 @@ import javax.persistence.Id;
 @Setter
 public class Rank {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    Long id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Id
+  Long id;
 
-    String name;
+  String name;
 }

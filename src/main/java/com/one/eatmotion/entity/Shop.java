@@ -24,12 +24,12 @@ public class Shop {
   Double x;
 
   Double y;
-  
+
   String address;
-  
+
   String jachi;
-  
-  String food_classific;
+
+  String foodClassific;
 
   // TODO: 2021-12-04 음식점 API에서 필요한 정보 추출후 담을 변수 선언
 }

@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostDTO {
-    String title;
-    String content;
-    String writer;
+  String title;
+  String content;
+  String writer;
 }
