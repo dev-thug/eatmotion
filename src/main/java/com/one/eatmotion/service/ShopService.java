@@ -13,8 +13,8 @@ public class ShopService {
 
   private final ShopRepository shopRepository;
 
-  public List<Shop> findBynameContaining(String keyword) {
-    return shopRepository.findBynameContaining(keyword);
+  public List<Shop> findByNameContaining(String keyword) {
+    return shopRepository.findByNameContaining(keyword);
   }
 
   public Shop shopTemp(Shop shop) {
@@ -27,5 +27,9 @@ public class ShopService {
 
   public List<Shop> findShopByCoordinates(double x, double y, int meter) {
     return shopRepository.findShopByCoordinates(x, y, meter);
+  }
+
+  public List<Shop> findShopByFoodClassific(String foodClassific) {
+    return shopRepository.findShopByFoodClassific(foodClassific);
   }
 }

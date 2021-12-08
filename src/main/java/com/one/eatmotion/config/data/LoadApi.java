@@ -103,17 +103,17 @@ public class LoadApi {
 			String shop_food_classific = (String) jo2.get("BIZCND_CODE_NM");
 			Double shop_x = Double.valueOf((String) jo2.get("X_CNTS"));
 			Double shop_y = Double.valueOf((String) jo2.get("Y_DNTS"));
-			
-			
-			Shop shop = Shop.builder()
-				.name(shop_name)
-				.x(shop_x)
-				.y(shop_y)
-				.jachi(shop_jachi)
-				.address(shop_address)
-				.food_classific(shop_food_classific)
-				.build();
-			
+
+      Shop shop =
+          Shop.builder()
+              .name(shop_name)
+              .x(shop_x)
+              .y(shop_y)
+              .jachi(shop_jachi)
+              .address(shop_address)
+              .foodClassific(shop_food_classific)
+              .build();
+
 			shopList.add(shop);
 		}
 		

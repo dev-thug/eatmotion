@@ -2,6 +2,7 @@ package com.one.eatmotion.controller;
 
 import com.one.eatmotion.entity.Reserve;
 import com.one.eatmotion.service.ReserveService;
+import com.sun.xml.bind.v2.TODO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,6 @@ public class ReserveController {
 
   /** 매장 상세 페이지에서 시작한다고 가정 */
   @PostMapping("/reserve/{storeId}")
-  @ResponseBody
   public Reserve makeReserve(@PathVariable Long storeId, @RequestBody Reserve reserve) {
     System.out.println("try reserve/{id}");
     //		reserveService.makeReserve(reserve);
@@ -41,6 +41,7 @@ public class ReserveController {
    *
    * <p>reserveDate랑 reserveNumberOfPeople만 바꿀 수 있음 (임시)
    */
+  // TODO: 예약 n 시간 전까지 변경할 수 있다 라는 조건 걸어야함
   @PutMapping("/reserve/{id}")
   public Reserve editReserve(@PathVariable Long id, @RequestBody Reserve reserve) {
     System.out.println("try editReserve/{reserveId}");
@@ -54,6 +55,7 @@ public class ReserveController {
   }
 
   /** 예약 취소하는 부분 */
+  // TODO: 예약 n 시간 전까지 취소할 수 있다 라는 조건 걸어야함
   @DeleteMapping("/reserve/{reserveId}")
   public void deleteReserve(@PathVariable Long reserveId) {
     System.out.println("try deleteReserve");

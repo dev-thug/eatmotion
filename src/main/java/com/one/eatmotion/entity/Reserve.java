@@ -16,14 +16,10 @@ public class Reserve {
   @Id
   Long id; // ReserveId
 
-  Long userId;
-
-  Long storeId;
-
   String reserveDate;
 
   Integer reserveNumberOfPeople;
 
-  //    @ManyToOne
-  //    User user;
+  @ManyToOne Shop shop;
+  @ManyToOne User user;
 }
