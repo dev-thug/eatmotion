@@ -1,5 +1,6 @@
 package com.one.eatmotion.service;
 
+import com.one.eatmotion.config.distance.Distance;
 import com.one.eatmotion.entity.Shop;
 import com.one.eatmotion.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ public class ShopService {
 
   private final ShopRepository shopRepository;
 
+  private final Distance distance;
+
   public List<Shop> findByNameContaining(String keyword) {
     return shopRepository.findByNameContaining(keyword);
   }
@@ -25,7 +28,9 @@ public class ShopService {
     return shopRepository.findAll();
   }
 
-  public List<Shop> findShopByCoordinates(double x, double y, int meter) {
+  public List<Shop> findShopByCoordinates(Double x, Double y, Double userX, Double userY) {
+    double meter = distance.distance(x, y, userX, userY);
+
     return shopRepository.findShopByCoordinates(x, y, meter);
   }
 

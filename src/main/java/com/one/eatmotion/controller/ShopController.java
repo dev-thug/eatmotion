@@ -24,10 +24,9 @@ public class ShopController {
     return shopService.findByNameContaining(keyword);
   }
 
-  /** Todo: recurses infinitely 무한 재귀 걸림, 왜? */
-  @GetMapping("/shop/search/{meter}")
-  public List<Shop> findShopByCoordinates(Double x, Double y, int meter) {
-    return shopService.findShopByCoordinates(x, y, meter);
+  @GetMapping("/shop/search/gps")
+  public List<Shop> findShopByCoordinates(Double x, Double y, Double userX, Double userY) {
+    return shopService.findShopByCoordinates(x, y, userX, userY);
   }
 
   @GetMapping("/shop/search/{foodClassific}")
