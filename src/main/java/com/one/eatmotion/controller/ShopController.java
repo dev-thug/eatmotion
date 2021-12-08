@@ -41,7 +41,7 @@ public class ShopController {
    */
   @GetMapping("/shop/search/{meter}")
   public List<Shop> shopSearchByCoordinates(Double x, Double y, int meter) {
-    return null;
+    return shopSearchByCoordinates(x, y, meter);
   }
 
   @PostMapping("/shop/temp")

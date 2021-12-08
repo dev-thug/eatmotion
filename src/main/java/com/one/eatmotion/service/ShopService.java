@@ -24,4 +24,8 @@ public class ShopService {
   public List<Shop> findAll() {
     return shopRepository.findAll();
   }
+
+  public List<Shop> findShopByCoordinates(double x, double y, int meter) {
+    return shopRepository.findShopByCoordinates(x, y, meter);
+  }
 }
