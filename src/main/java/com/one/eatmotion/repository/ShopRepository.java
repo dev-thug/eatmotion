@@ -8,8 +8,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 /**
- * Todo: find method들 orderby평점, limit 개수 걸어야함, Review entity에 평점 만들고 Rank entity에 ManyToOne 관계 지정해서
- * 평균 낸 다음 평균으로 orderby 해야 할 듯
+ * Todo: 모든 find method들 orderby평점, limit 개수 걸어야함, Review entity에 평점 만들고 Rank entity에 ManyToOne 관계
+ * 지정해서 평균 낸 다음 평균으로 orderby 해야 할 듯
  */
 public interface ShopRepository extends JpaRepository<Shop, Long> {
 

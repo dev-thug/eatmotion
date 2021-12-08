@@ -17,27 +17,17 @@ public class ShopController {
 
   private final ShopService shopService;
 
-  /**
-   * @param keyword
-   * @return 키워드로 검색한 후 거리 내의 매장을 출력하기 위해 select를 다중으로 만들어야 함 지역구분 나눠서 entity로 추가한후 select 하는 방법,
-   *     좌표(x, y) 계산 공부해서 거리 계산한 후 select 하는 방법 등 keyword도 2글자 이상으로 유효성 체크해야할 듯
-   */
   @GetMapping("/shop/search/{keyword}")
-  public List<Shop> SearchshopByKeyword(
+  public List<Shop> findByNameContaining(
       @Size(min = 2, message = "2글자 이상 입력해주세요") @PathVariable String keyword) {
     System.out.println(shopService.findByNameContaining(keyword));
     return shopService.findByNameContaining(keyword);
   }
 
-  /**
-   * @param x
-   * @param y
-   * @param meter
-   * @return shopList(meter)
-   */
+  /** Todo: recurses infinitely 무한 재귀 걸림, 왜? */
   @GetMapping("/shop/search/{meter}")
-  public List<Shop> shopSearchByCoordinates(Double x, Double y, int meter) {
-    return shopSearchByCoordinates(x, y, meter);
+  public List<Shop> findShopByCoordinates(Double x, Double y, int meter) {
+    return shopService.findShopByCoordinates(x, y, meter);
   }
 
   @GetMapping("/shop/search/{foodClassific}")

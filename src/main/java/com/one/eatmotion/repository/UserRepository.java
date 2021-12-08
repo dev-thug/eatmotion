@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email);
-    Page<User> findAllByRolesContaining(SimpleGrantedAuthority role, Pageable pageable);
+  Optional<User> findByEmail(String email);
+
+  Page<User> findAllByRolesContaining(SimpleGrantedAuthority role, Pageable pageable);
 }

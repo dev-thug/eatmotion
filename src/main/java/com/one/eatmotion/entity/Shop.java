@@ -24,9 +24,9 @@ public class Shop {
   Double x;
 
   Double y;
-  
+
   String address;
-  
+
   String jachi;
 
   String foodClassific;

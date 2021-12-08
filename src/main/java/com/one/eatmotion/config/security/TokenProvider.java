@@ -1,6 +1,5 @@
 package com.one.eatmotion.config.security;
 
-
 import com.one.eatmotion.advice.exception.NotFoundUserException;
 import com.one.eatmotion.repository.UserRepository;
 import io.jsonwebtoken.Claims;
@@ -28,52 +27,55 @@ import java.util.List;
 @Component
 public class TokenProvider {
 
-    @Value("secret.token.key")
-    private String secretKey;
+  private final long validTime = 1000L * 60 * 60 * 24;
+  private final UserRepository userRepository;
 
-    private final long validTime = 1000L * 60 * 60 * 24;
+  @Value("secret.token.key")
+  private String secretKey;
 
+  @PostConstruct
+  protected void init() {
+    secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes(StandardCharsets.UTF_8));
+  }
 
-    private final UserRepository userRepository;
+  public String createToken(String userId, List<SimpleGrantedAuthority> roles) {
+    Claims claims = Jwts.claims().setSubject(userId);
+    claims.put("roles", roles);
+    Date now = new Date();
 
-    @PostConstruct
-    protected void init() {
-        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes(StandardCharsets.UTF_8));
+    return Jwts.builder()
+        .setClaims(claims)
+        .setIssuedAt(now)
+        .setExpiration(new Date(now.getTime() + validTime))
+        .signWith(SignatureAlgorithm.HS256, secretKey)
+        .compact();
+  }
+
+  public String getUserId(String token) {
+    return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+  }
+
+  public Authentication getAuthentication(String token) {
+    UserDetails userDetails =
+        userRepository
+            .findById(Long.valueOf(this.getUserId(token)))
+            .orElseThrow(
+                NotFoundUserException
+                    ::new); // userDetailsService.loadUserByUsername(this.getEmail(token));
+
+    return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+  }
+
+  public String resolveToken(HttpServletRequest httpServletRequest) {
+    return httpServletRequest.getHeader("AUTH-TOKEN");
+  }
+
+  public boolean validateToken(String token) {
+    try {
+      Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+      return !claimsJws.getBody().getExpiration().before(new Date());
+    } catch (Exception e) {
+      return false;
     }
-
-    public String createToken(String userId, List<SimpleGrantedAuthority> roles) {
-        Claims claims = Jwts.claims().setSubject(userId);
-        claims.put("roles", roles);
-        Date now = new Date();
-
-        return Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + validTime))
-                .signWith(SignatureAlgorithm.HS256, secretKey)
-                .compact();
-    }
-
-    public String getUserId(String token) {
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
-    }
-
-    public Authentication getAuthentication(String token) {
-        UserDetails userDetails = userRepository.findById(Long.valueOf(this.getUserId(token))).orElseThrow(NotFoundUserException::new); // userDetailsService.loadUserByUsername(this.getEmail(token));
-
-        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
-    }
-
-    public String resolveToken(HttpServletRequest httpServletRequest) {
-        return httpServletRequest.getHeader("AUTH-TOKEN");
-    }
-
-    public boolean validateToken(String token) {
-        try {
-            Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-            return !claimsJws.getBody().getExpiration().before(new Date());
-        } catch (Exception e) {
-            return false;
-        }
-    }
+  }
 }

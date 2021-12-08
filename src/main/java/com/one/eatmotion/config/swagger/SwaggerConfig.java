@@ -14,21 +14,24 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Bean
-    public Docket swaggerApi() {
-        return new Docket(DocumentationType.SWAGGER_2).apiInfo(swaggerInfo()).select()
-                .apis(RequestHandlerSelectors.basePackage("com.one.eatmotion.controller"))
-                .paths(PathSelectors.any())
-                .build()
-                .useDefaultResponseMessages(false);
-    }
+  @Bean
+  public Docket swaggerApi() {
+    return new Docket(DocumentationType.SWAGGER_2)
+        .apiInfo(swaggerInfo())
+        .select()
+        .apis(RequestHandlerSelectors.basePackage("com.one.eatmotion.controller"))
+        .paths(PathSelectors.any())
+        .build()
+        .useDefaultResponseMessages(false);
+  }
 
-    private ApiInfo swaggerInfo() {
-        return new ApiInfoBuilder().title("맛집을 구해줘 API Documentation")
-                .description("서버 API에 대한 연동 문서")
-                .license("").licenseUrl("").version("1")
-                .build();
-    }
-
-
+  private ApiInfo swaggerInfo() {
+    return new ApiInfoBuilder()
+        .title("맛집을 구해줘 API Documentation")
+        .description("서버 API에 대한 연동 문서")
+        .license("")
+        .licenseUrl("")
+        .version("1")
+        .build();
+  }
 }

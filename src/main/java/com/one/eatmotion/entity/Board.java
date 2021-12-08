@@ -14,10 +14,9 @@ import javax.persistence.*;
 @Builder
 public class Board {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id; // board_id
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  Long id; // board_id
 
-    String name;
-
+  String name;
 }

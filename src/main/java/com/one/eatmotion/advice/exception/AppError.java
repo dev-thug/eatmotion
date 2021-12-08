@@ -8,6 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AppError {
-    private Integer code;
-    private String message;
+  private Integer code;
+  private String message;
 }
