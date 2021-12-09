@@ -35,7 +35,7 @@ public class LoadApi {
       // shopRepository.save(null);
       for (Shop shop : shopList) {
         shopRepository.save(shop);
-        System.out.println(shop);
+        //System.out.println(shop);
       }
 
       cur += 1000;

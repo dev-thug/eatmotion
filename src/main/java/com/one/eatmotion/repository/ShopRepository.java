@@ -16,7 +16,8 @@ import java.util.List;
 public interface ShopRepository extends JpaRepository<Shop, Long> {
 
   List<Shop> findByNameContaining(String keword);
-
+  
+  List<Shop> findByAddress(String address);
   /** Todo: 점수 순으로 n개 limit 해야함, pageable 사용 평점순 */
 
   // Distance.distance(x, y, userX, userY) <= 5000    //(meter == 5000)
