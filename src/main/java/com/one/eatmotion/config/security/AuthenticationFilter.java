@@ -12,24 +12,25 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+
 public class AuthenticationFilter extends GenericFilterBean {
 
-  private final TokenProvider tokenProvider;
+    private TokenProvider tokenProvider;
 
-  public AuthenticationFilter(TokenProvider tokenProvider) {
-    this.tokenProvider = tokenProvider;
-  }
-
-  @Override
-  public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
-      throws IOException, ServletException {
-    String token = tokenProvider.resolveToken((HttpServletRequest) request);
-    if (token != null && tokenProvider.validateToken(token)) {
-      Authentication auth = tokenProvider.getAuthentication(token);
-      SecurityContextHolder.getContext().setAuthentication(auth);
+    public AuthenticationFilter(TokenProvider tokenProvider) {
+        this.tokenProvider = tokenProvider;
     }
-    filterChain.doFilter(request, response);
-  }
 
-  private class JwtTokenProvider {}
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+        String token = tokenProvider.resolveToken((HttpServletRequest) request);
+        if (token != null && tokenProvider.validateToken(token)) {
+            Authentication auth = tokenProvider.getAuthentication(token);
+            SecurityContextHolder.getContext().setAuthentication(auth);
+        }
+        filterChain.doFilter(request, response);
+    }
+
+    private class JwtTokenProvider {
+    }
 }
