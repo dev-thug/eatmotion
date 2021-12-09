@@ -36,6 +36,4 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
   List<Shop> findShopByCoordinates(@Param("userX") Double userX, @Param("userY") Double userY);
 
   List<Shop> findShopByFoodClassific(String foodClassific);
-
-  String findByAddress(String address);
 }
