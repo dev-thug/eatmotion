@@ -20,4 +20,6 @@ public class Review {
   private Long id;
 
   private String content;
+
+  private int grade;
 }

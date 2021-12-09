@@ -17,7 +17,7 @@ public class ShopController {
 
   private final ShopService shopService;
 
-  @GetMapping("/shop/search/{keyword}")
+  @GetMapping("/shop/search/a/{keyword}")
   public List<Shop> findByNameContaining(
       @Size(min = 2, message = "2글자 이상 입력해주세요") @PathVariable String keyword) {
     System.out.println(shopService.findByNameContaining(keyword));
@@ -25,8 +25,8 @@ public class ShopController {
   }
 
   @GetMapping("/shop/search/gps")
-  public List<Shop> findShopByCoordinates(Double x, Double y, Double userX, Double userY) {
-    return shopService.findShopByCoordinates(x, y, userX, userY);
+  public List<Shop> findShopByCoordinates(Double userX, Double userY) {
+    return shopService.findShopByCoordinates(userX, userY);
   }
 
   @GetMapping("/shop/search/{foodClassific}")
