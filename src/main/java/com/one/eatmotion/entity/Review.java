@@ -15,9 +15,11 @@ import javax.persistence.Id;
 @Setter
 public class Review {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
+		private Long id;
 
-  private String content;
+		private String content;
+
+
 }

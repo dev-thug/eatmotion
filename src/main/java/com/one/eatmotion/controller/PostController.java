@@ -20,30 +20,29 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostController {
 
-  private final PostRepository postRepository;
-  private final BoardRepository boardRepository;
+    private final PostRepository postRepository;
+    private final BoardRepository boardRepository;
 
-  @ResponseBody
-  @PostMapping("post/{id}")
-  public Post save(@RequestBody PostDTO post, @PathVariable Long id) {
-    Board board = boardRepository.findById(id).orElseThrow();
+    @ResponseBody
+    @PostMapping("post/{id}")
+    public Post save(@RequestBody PostDTO post, @PathVariable Long id) {
+        Board board = boardRepository.findById(id).orElseThrow();
 
-    return postRepository.save(
-        Post.builder()
-            .title(post.getTitle())
-            .content(post.getContent())
-            .writer(post.getWriter())
-            .board(board)
-            .build());
-  }
+        return postRepository.save(Post.builder().title(post.getTitle()).content(post.getContent()).writer(post.getWriter()).board(board).build());
 
-  @PostMapping("board")
-  public Board save(@RequestParam String name) {
-    return boardRepository.save(Board.builder().name(name).build());
-  }
+    }
 
-  @GetMapping("post")
-  public List<Post> findAll() {
-    return postRepository.findAll();
-  }
+    @PostMapping("board")
+    public Board save(@RequestParam String name){
+        return boardRepository.save(Board.builder().name(name).build());
+
+    }
+
+    @GetMapping("post")
+    public List<Post> findAll() {
+        return postRepository.findAll();
+    }
+
+
+
 }
