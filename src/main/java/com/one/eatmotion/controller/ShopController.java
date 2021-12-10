@@ -24,9 +24,14 @@ public class ShopController {
     return shopService.findByNameContaining(keyword);
   }
 
+  /**
+   * @param userX
+   * @param userY
+   * @param distance distance는 KM 단위로 받습니다
+   */
   @GetMapping("/shop/search/gps")
-  public List<Shop> findShopByCoordinates(Double userX, Double userY) {
-    return shopService.findShopByCoordinates(userX, userY);
+  public List<Shop> findShopByCoordinates(Double userX, Double userY, Double distance) {
+    return shopService.findShopByCoordinates(userX, userY, distance);
   }
 
   @GetMapping("/shop/search/{foodClassific}")

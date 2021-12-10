@@ -16,24 +16,23 @@ import java.util.List;
 public interface ShopRepository extends JpaRepository<Shop, Long> {
 
   List<Shop> findByNameContaining(String keword);
-  
-  List<Shop> findByAddress(String address);
-  /** Todo: 점수 순으로 n개 limit 해야함, pageable 사용 평점순 */
 
-  // Distance.distance(x, y, userX, userY) <= 5000    //(meter == 5000)
-  // 거리계산하는 쿼리
-  //  @Query(
-  //      value =
-  //          "select s from Shop s where (:x BETWEEN :x-:meter and :x+:meter) and (:y BETWEEN
-  // :y-:meter and :y+:meter)")
-  //  List<Shop> findShopByCoordinates(
-  //      @Param("x") Double x, @Param("y") Double y, @Param("meter") Double meter);
+  List<Shop> findByAddress(String address);
+
+  /** Todo: 점수 순으로 n개 limit 해야함, pageable 사용 평점순 */
+  String HAVERSINE_PART =
+      "(6371 * acos(cos(radians(:userY)) * cos(radians(y)) * cos(radians(x) - radians(:userX)) + sin(radians(:userY)) * sin(radians(y))))";
 
   @Query(
-      value =
-          "SELECT id, ( 6371 * acos ( cos ( radians( :userY ) ) * cos( radians( y ) )  * cos( radians( x ) - radians(:userX) )  + sin ( radians(:userY) ) * sin( radians( Y ) )  ) AS distance FROM Shop HAVING distance < 5 ORDER BY distance LIMIT 0 , 20;",
-      nativeQuery = true)
-  List<Shop> findShopByCoordinates(@Param("userX") Double userX, @Param("userY") Double userY);
+      "SELECT s FROM Shop s WHERE "
+          + HAVERSINE_PART
+          + " < :distance ORDER BY "
+          + HAVERSINE_PART
+          + " ASC")
+  List<Shop> findShopByCoordinates(
+      @Param("userX") Double userX,
+      @Param("userY") Double userY,
+      @Param("distance") Double distance);
 
   List<Shop> findShopByFoodClassific(String foodClassific);
 }
