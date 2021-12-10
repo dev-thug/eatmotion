@@ -20,3 +20,6 @@ spring:
 secret:
   token:
     key: asdfdfea!dfeasdfe
+
+server:
+  port: 8081
