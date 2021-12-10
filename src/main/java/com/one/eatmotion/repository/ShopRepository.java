@@ -1,11 +1,11 @@
 package com.one.eatmotion.repository;
 
-import com.one.eatmotion.config.distance.Distance;
 import com.one.eatmotion.entity.Shop;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 
@@ -32,7 +32,13 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
   List<Shop> findShopByCoordinates(
       @Param("userX") Double userX,
       @Param("userY") Double userY,
-      @Param("distance") Double distance);
+      @Param("distance") Double distance,
+      Pageable pageable);
+
+  default List<Shop> findTop30ShopByCoordinates(
+      Double userX, Double userY, Double distance, Pageable pageable) {
+    return findShopByCoordinates(userX, userY, distance, PageRequest.of(0, 30));
+  }
 
   List<Shop> findShopByFoodClassific(String foodClassific);
 }

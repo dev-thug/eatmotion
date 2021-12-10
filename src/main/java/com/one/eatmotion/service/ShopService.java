@@ -4,6 +4,7 @@ import com.one.eatmotion.config.distance.Distance;
 import com.one.eatmotion.entity.Shop;
 import com.one.eatmotion.repository.ShopRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class ShopService {
 
   public List<Shop> findShopByCoordinates(Double userX, Double userY, Double distance) {
     //    double meter = distance.distance(x, y, userX, userY);
-    return shopRepository.findShopByCoordinates(userX, userY, distance);
+    return shopRepository.findShopByCoordinates(userX, userY, distance, PageRequest.of(0, 30));
   }
 
   public List<Shop> findShopByFoodClassific(String foodClassific) {
