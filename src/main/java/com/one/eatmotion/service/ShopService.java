@@ -28,9 +28,9 @@ public class ShopService {
     return shopRepository.findAll();
   }
 
-  public List<Shop> findShopByCoordinates(Double userX, Double userY) {
+  public List<Shop> findShopByCoordinates(Double userX, Double userY, Double distance) {
     //    double meter = distance.distance(x, y, userX, userY);
-    return shopRepository.findShopByCoordinates(userX, userY);
+    return shopRepository.findShopByCoordinates(userX, userY, distance);
   }
 
   public List<Shop> findShopByFoodClassific(String foodClassific) {
