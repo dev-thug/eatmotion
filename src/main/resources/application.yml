@@ -16,7 +16,9 @@ spring:
       hibernate:
         format_sql: false
         show_sql: false
-
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
 secret:
   token:
     key: asdfdfea!dfeasdfe
