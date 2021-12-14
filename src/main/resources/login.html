@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Eatmotion 로그인</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+$('.message a').click(function(){
+	   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+	});
+});
+
+</script>
+<style type="text/css">
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+
+html {
+
+    position: relative;
+
+    min-height: 100%;
+
+    margin: 0;
+
+    background: #fff;
+
+}
+
+body {
+	background-color: #fff;
+	min-height: 100%;
+}
+
+#footer_div {
+	width:100%;
+	height:200px;
+	padding-top: 40px;
+	padding-bottom: 20px;
+	border-top: 2px solid #ccc;
+	background-color: #fff;
+	text-align: center;
+	
+}
+
+.blank_div {
+	height:400px;
+	width:100%;
+}
+
+.e { 
+  font-family: 'Oswald', sans-serif;
+  font-size: x-large;
+ }
+ .settle { 
+  margin-left:10px;
+  margin-right:10px;
+  font-size: x-large;
+ }
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #ffcc66;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #ff9900;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #ffcc66;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+
+.home_event {
+padding: 25px;
+margin: 0;
+width:100%;
+text-align: center;
+background:url(../img/bgpt2.png); background-size: none;
+}
+
+.login_top_div{
+  width:100%;
+  border-top:7px solid #fff;
+  border-bottom:7px solid #fff;
+}
+
+.login_top{
+  text-align: right;
+  width:100%;
+  padding-right:15%
+}
+
+.font_white {
+color: #333;
+}
+
+.wrap {
+	background-color: #fff;
+	width:100%;
+}
+
+.bg-my {
+	background-color: #ffcc66;
+}
+
+#loginBtn {
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	text-align: center;
+	text-decoration: none;
+	line-height: 40px;
+	outline: none;
+	background-color: #fff;
+	border: 2px solid #ffcc66;
+	color: #333;
+	line-height: 36px;
+}
+
+#loginBtn:hover {
+	background-color: #ffcc66;
+	border-color: #fff;
+	color: #fff;
+}
+
+#loginBtn::before, #loginBtn::after {
+	position: absolute;
+	z-index: -1;
+	display: block;
+	content: '';
+}
+
+#loginBtn, #loginBtn::before, #loginBtn::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+.logo {
+	font-family: 'Oswald', sans-serif;
+  	font-size: x-large;
+	text-decoration: none;
+	color: #fff;
+}
+
+.logo:hover {
+	text-decoration: none;
+	color: #fff;
+}
+
+#menu {
+	font: bold 16px "malgun gothic";
+	width: 24%;
+	height: 50px;
+	background: #ffcc66;
+	color: #ffcc66;
+	line-height: 50px;
+	margin: 0 auto;
+	text-align: center;
+	color: #ffcc66;
+}
+
+#menu>li {
+	float: left;
+	width: 33.3%;
+	position: relative;
+}
+#menu>li>a {
+    text-decoration: none;
+	color: #fff;
+}
+
+#menu>li>ul>li>a {
+    text-decoration: none;
+	color: #fff;
+}
+
+#menu>li>ul>li:hover>a {
+    text-decoration: none;
+	color: #333;
+}
+
+#menu>li>ul {
+	width: 100%;
+	display: none;
+	position: absolute;
+	font-size: 14px;
+	background: #ffcc66;
+	z-index:10;
+}
+
+#menu>li:hover>ul {
+	display: block;
+}
+
+#menu>li>ul>li:hover {
+	background: #fff;
+	
+	transition: ease 0.3s;
+}
+
+.navbox {
+  width:20%;
+  
+  margin-right:15%;
+  margin-left:15%;
+}
+.navbar{
+  position:relative;
+  display:-ms-flexbox;
+  display:flex;
+  -ms-flex-wrap:wrap;
+  flex-wrap:wrap;
+  -ms-flex-align:center;
+  align-items:center;
+  -ms-flex-pack:justify;
+  justify-content:space-between;
+  padding:.5rem 1rem
+}
+
+.nav_mybar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffcc66;
+    padding: 8px 12px;
+}
+
+.nav_mylogo {
+    font-size: 24px;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="login_top_div ">
+			<div class="login_top">
+					<a class="button" href="login.html" id="loginBtn">로그인</a>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<nav class="nav_mybar ">
+		<div class="nav_mylogo navbox">
+
+			<a class="logo" href="index.html">Eatmotion</a>
+			</div>
+
+			
+				<div id="menu">
+					<li><a href="#">맛집 찾기</a>
+						<ul>
+							<li><a href="#">지역으로 찾기</a></li>
+							<li><a href="#">음식으로 찾기</a></li>
+							<li><a href="#">랭킹으로 찾기</a></li>
+						</ul></li>
+					<li><a href="#">내정보</a>
+						<ul>
+							<li><a href="userInfo.html">회원 정보</a></li>
+							<li><a href="shoplist.html">다녀간 음식점</a></li>
+							<li><a href="#">남긴 리뷰</a></li>
+						</ul></li>
+					<li><a href="#">고객지원</a>
+						<ul>
+							<li><a href="#">문의 하기</a></li>
+							<li><a href="#">버전 정보</a></li>
+						</ul></li>
+				</div>
+			
+
+	</nav>
+	<!-- nav end -->
+	
+
+<div class="login-page">
+  <div class="form">
+    <form class="register-form">
+    <p class="e">Eatmotion</p><br>
+      <input type="text" placeholder="이름"/>
+      <input type="number" placeholder="생년월일 ex)20201206"/>
+      <input type="text" placeholder="아이디"/>
+      <input type="password" placeholder="비밀번호"/>
+      <input type="password" placeholder="비밀번호 확인"/>
+      <input type="text" placeholder="이메일 주소"/>
+      <input type="number" placeholder="전화번호 ex)01012345678"/>
+      <button>회원가입</button>
+      <p class="message">이미 계정이 있으신가요? <a href="#">로그인</a></p>
+    </form>
+    <form class="login-form">
+    <p class="e">Eatmotion</p><br>
+      <input type="text" placeholder="아이디"/>
+      <input type="password" placeholder="비밀번호"/>
+      <button>로그인</button>
+      <p class="message">계정이 없으신가요? <a href="#"> 회원가입</a></p>
+    </form>
+  </div>
+</div>
+
+<div class="blank_div"></div>
+
+
+<footer>
+			<div id="footer_div">
+				<p class="e">Eatmotion</p>
+				<p>Team. 맛집을 구해조</p> 
+				<a> Phone: +82) 10-1234-5678</a>
+				<a class="settle">|</a>
+				<a>Email: MCL1@multicampus.com</a>
+			</div>
+	
+		<div class="container-fluid px-0 bg-my py-3">
+			<div class="row no-gutters">
+				<div class="col-md-12 text-center">
+					<p class="mb-0">
+						Eatmotion &copy;<script>document.write(new Date().getFullYear());</script> APP | Project of <a href="#" target="_blank">맛집을 구해조</a>
+						
+					</div>
+				</div>
+			</div>
+		</footer>
+
+
+</body>
+</html>
