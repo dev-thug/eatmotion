@@ -1,0 +1,15 @@
+notFoundResource:
+  code: "4000"
+  message: "요청한 자원을 찾을 수 없습니다."
+notFoundUser:
+  code: "5000"
+  message: "가입된 유저가 없습니다."
+notFoundEmail:
+  code: "5100"
+  message: "가입된 이메일을 찾을수 없습니다."
+invalidPassword:
+  code: "5200"
+  message: "비밀번호가 일치하지 않습니다."
+accessDenied:
+  code: "9000"
+  message: "접근이 권한이 없습니다."
