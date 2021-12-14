@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Eatmotion</title>
+<title>Eatmotion 다녀간 음식점</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="stylesheet"
@@ -31,7 +31,7 @@ html {
 }
 
 body {
-	background-color: #fff;
+	background-color: #ffcc66;
 	min-height: 100%;
 }
 
@@ -50,6 +50,7 @@ body {
   font-family: 'Oswald', sans-serif;
   font-size: x-large;
  }
+ 
  .settle { 
   margin-left:10px;
   margin-right:10px;
@@ -57,14 +58,51 @@ body {
  }
  
 .home_event {
-padding-top: 20px;
-padding-bottom: 20px;
-padding-left: 8%;
-padding-right: 8%;
+padding: 25px;
 margin: 0;
 width:100%;
 text-align: center;
+background:url(../img/bgpt2.png); background-size: none;
+}
+
+.menu_banner {
+padding: 25px;
+margin: 0;
+width:100%;
+height:500px;
+text-align: center;
 background:url(../img/bg5.png); background-size: none;
+}
+
+.menu_banner_title {
+
+margin-top: 150px;
+width:100%;
+text-align: center;
+}
+
+.menu_tile_font { 
+  color: #333;
+  font-size: 70px;
+}
+
+.menu_sub_font {
+	text-decoration: none;
+	color: #999;
+}
+
+.menu_sub_font:hover {
+	text-decoration: none;
+	color: #ffcc66;
+}
+
+.menu_foot {
+padding: 25px;
+margin: 0;
+width:100%;
+height:200px;
+text-align: center;
+background:url(../img/bgpt2.png); background-size: none;
 }
 
 .line_10 {
@@ -243,6 +281,19 @@ a {
     font-size: 24px;
     color: #fff;
 }
+
+.shoplist_div{
+  border-top: 50px solid #fff;
+  border-left: 100px solid #fff;
+  border-right: 100px solid #fff;
+  background-color: #fff;
+  width:80%;
+  height:800px;
+  margin-top: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 </style>
 </head>
 <body>
@@ -289,65 +340,26 @@ a {
 	</nav>
 	<!-- nav end -->
 	
-	<style>
-  
-  
-  #slide{display: inline-block; width:100%; height:850px; position:relative; overflow:hidden;  }
-  #slide ul{width:400%;height:100%;transition:1s;}
-  #slide ul:after{content:"";display:block;clear:both;}
-  #slide li{float:left;width:25%;height:100%;}
-  #slide li:nth-child(1){background:url(../img/home.png); background-size: contain; background-repeat: no-repeat; background-position: 50% 50%; }
-  #slide li:nth-child(2){background:url(../img/launching.png); background-size: contain; background-repeat: no-repeat; background-position: 50% 50%; }
-  #slide li:nth-child(3){background:url(../img/sup.png); background-size: contain; background-repeat: no-repeat; background-position: 50% 50%; }
-  #slide li:nth-child(4){background:#aaf;}
-  #slide input{display:none;}
-  #slide label{display:inline-block;vertical-align:middle;width:10px;height:10px;border:2px solid #666;background:#fff;transition:0.3s;border-radius:50%;cursor:pointer;}
-  
- 
-  #slide .pos{text-align:center;position:absolute;bottom:10px;left:0;width:100%;text-align:center;}
-  #pos1:checked~ul{margin-left:0%;}
-  #pos2:checked~ul{margin-left:-100%;}
-  #pos3:checked~ul{margin-left:-200%;}
-  #pos4:checked~ul{margin-left:-300%;}
-  #pos1:checked~.pos>label:nth-child(1){background:#666;}
-  #pos2:checked~.pos>label:nth-child(2){background:#666;}
-  #pos3:checked~.pos>label:nth-child(3){background:#666;}
-  #pos4:checked~.pos>label:nth-child(4){background:#666;}
-</style>
-<div class="home_event">
-<div id="slide" >
-
-  <input type="radio" name="pos" id="pos1" checked>
-  <input type="radio" name="pos" id="pos2">
-  <input type="radio" name="pos" id="pos3">
-  <input type="radio" name="pos" id="pos4">
-  <ul>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
-  
-  <p class="pos">
-    <label for="pos1"></label>
-    <label for="pos2"></label>
-    <label for="pos3"></label>
-    <label for="pos4"></label>
-  </p>
-</div>
-</div>
-	<div class="line_10">
+	<div class="menu_banner">
 		
+		<div class="menu_banner_title">
+			<p class="menu_tile_font"><strong>회원 정보</strong></p>
+		</div>
+		<br><br><br>
+		
+		<a class="menu_sub_font" href="index.html">홈</a> > <a class="menu_sub_font" href="userInfo.html">내정보</a> > <a >회원 정보</a>
+	
+	
 	</div>
 	
-	test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>
-	test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>
-	test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>
+	<div class="shoplist_div">
 	
 	
 	
+	</div>
 	
-		<footer>
+	
+	<footer>
 			<div id="footer_div">
 				<p class="e">Eatmotion</p>
 				<p>Team. 맛집을 구해조</p> 
@@ -366,9 +378,5 @@ a {
 				</div>
 			</div>
 		</footer>
-	
-	
-
-
 </body>
 </html>
