@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,8 +22,11 @@ public class ReviewController {
   /** 런타임 404 * */
   @PostMapping("/review/{shopId}/save")
   public TextReview saveReview(@PathVariable Long shopId, TextReview textReview) {
-    textReviewService.saveTextReview(textReview);
-    textReview.setGrade(Double.valueOf(sentimentService.sentiment(textReview.getContent())));
-    return textReview;
+    return textReviewService.saveTextReview(textReview);
+  }
+
+  @PutMapping("/review/{shopId}/update")
+  public TextReview updateReview(@PathVariable Long shopId, Long id, String content) {
+    return textReviewService.updateTextReview(id, content);
   }
 }
