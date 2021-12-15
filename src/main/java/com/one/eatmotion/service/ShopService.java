@@ -36,4 +36,8 @@ public class ShopService {
   public List<Shop> findShopByFoodClassific(String foodClassific) {
     return shopRepository.findShopByFoodClassific(foodClassific);
   }
+  
+  public List<Shop> findByAddress(String address){
+	  return shopRepository.findByAddress(address);
+  }
 }
