@@ -14,6 +14,16 @@ public class Distance {
   //				System.out.println(distanceMeter) ;
   //		}
 
+  // This function converts decimal degrees to radians
+  private static double deg2rad(double deg) {
+    return (deg * Math.PI / 180.0);
+  }
+
+  // This function converts radians to decimal degrees
+  private static double rad2deg(double rad) {
+    return (rad * 180 / Math.PI);
+  }
+
   /**
    * 두 지점간의 거리 계산 main 실행확인 결과 from 교대역 to 서초역 587미터
    *
@@ -41,15 +51,5 @@ public class Distance {
     dist = dist * 1609.344;
 
     return (dist);
-  }
-
-  // This function converts decimal degrees to radians
-  private static double deg2rad(double deg) {
-    return (deg * Math.PI / 180.0);
-  }
-
-  // This function converts radians to decimal degrees
-  private static double rad2deg(double rad) {
-    return (rad * 180 / Math.PI);
   }
 }

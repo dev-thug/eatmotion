@@ -15,13 +15,13 @@ import java.util.List;
  */
 public interface ShopRepository extends JpaRepository<Shop, Long> {
 
-  List<Shop> findByNameContaining(String keword);
-
-  List<Shop> findByAddress(String address);
-
   /** Todo: 점수 순으로 n개 limit 해야함, pageable 사용 평점순 */
   String HAVERSINE_PART =
       "(6371 * acos(cos(radians(:userY)) * cos(radians(y)) * cos(radians(x) - radians(:userX)) + sin(radians(:userY)) * sin(radians(y))))";
+
+  List<Shop> findByNameContaining(String keword);
+
+  List<Shop> findByAddress(String address);
 
   @Query(
       "SELECT s FROM Shop s WHERE "
@@ -35,6 +35,7 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
       @Param("distance") Double distance,
       Pageable pageable);
 
+  // 거리순으로 30개 나옴
   default List<Shop> findTop30ShopByCoordinates(
       Double userX, Double userY, Double distance, Pageable pageable) {
     return findShopByCoordinates(userX, userY, distance, PageRequest.of(0, 30));

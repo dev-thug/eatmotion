@@ -5,6 +5,8 @@ import com.one.eatmotion.repository.ReserveRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -25,7 +27,33 @@ public class ReserveService {
     return reserveRepository.getDetailListById(id);
   }
 
+  public Reserve updateReserve(Long reserveId, Reserve reserve) {
+    Reserve updatedReserve = reserveRepository.getDetailListById(reserveId);
+
+    // 예약 시간 - now 2시간 전까지만 변경할 수 있도록
+    LocalDateTime reserveTime = reserveRepository.getDetailListById(reserveId).getReserveDateTime();
+    LocalDateTime now = LocalDateTime.now();
+
+    Duration duration = Duration.between(now, reserveTime);
+
+    if (duration.getSeconds() < 7200) {
+      updatedReserve.setReserveDateTime(reserve.getReserveDateTime());
+      updatedReserve.setReserveNumberOfPeople(reserve.getReserveNumberOfPeople());
+      return updatedReserve;
+    } else {
+      return null;
+    }
+  }
+
   public void deleteReserve(Long reserveId) {
-    reserveRepository.deleteById(reserveId);
+    // 예약 시간 - now 2시간 전까지만 취소할 수 있도록
+    LocalDateTime reserveTime = reserveRepository.getDetailListById(reserveId).getReserveDateTime();
+    LocalDateTime now = LocalDateTime.now();
+
+    Duration duration = Duration.between(now, reserveTime);
+
+    if (duration.getSeconds() < 7200) {
+      reserveRepository.deleteById(reserveId);
+    }
   }
 }
