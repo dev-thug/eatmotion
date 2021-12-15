@@ -1,8 +1,10 @@
 package com.one.eatmotion.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -14,15 +16,17 @@ public class Reserve {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  Long id; // ReserveId
+  private Long id; // ReserveId
 
-  Long userId;
+  private Long userId;
 
-  Long storeId;
+  private Long storeId;
 
-  String reserveDate;
+  @CreatedDate private LocalDateTime userReserved = LocalDateTime.now();
 
-  Integer reserveNumberOfPeople;
+  private LocalDateTime reserveDateTime;
+
+  private Integer reserveNumberOfPeople;
 
   //    @ManyToOne
   //    User user;

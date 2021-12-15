@@ -11,24 +11,22 @@ import javax.persistence.*;
 @Builder
 @Setter
 public class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  Long id;
 
-    String title;
+  String title;
 
-    String content;
+  String content;
 
-    String writer;
+  String writer;
 
-    @ManyToOne
-    Board board;
+  @ManyToOne Board board;
 
-    @ManyToOne
-    User user;
+  @ManyToOne User user;
 
-    public void updatePost(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
+  public void updatePost(String title, String content) {
+    this.title = title;
+    this.content = content;
+  }
 }

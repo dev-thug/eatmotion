@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Page<Post> findAllByBoard(Board board, Pageable pageable);
+  Page<Post> findAllByBoard(Board board, Pageable pageable);
 }

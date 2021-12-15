@@ -2,8 +2,8 @@ package com.one.eatmotion.controller;
 
 import com.one.eatmotion.entity.Reserve;
 import com.one.eatmotion.service.ReserveService;
-import com.sun.xml.bind.v2.TODO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,23 +41,15 @@ public class ReserveController {
    *
    * <p>reserveDate랑 reserveNumberOfPeople만 바꿀 수 있음 (임시)
    */
-  // TODO: 예약 n 시간 전까지 변경할 수 있다 라는 조건 걸어야함
   @PutMapping("/reserve/{id}")
-  public Reserve editReserve(@PathVariable Long id, @RequestBody Reserve reserve) {
-    System.out.println("try editReserve/{reserveId}");
+  public Reserve editReserve(@PathVariable Long reserveId, @RequestBody Reserve reserve) {
 
-    Reserve oldReserve = reserveService.getDetailListByReserveId(id);
-
-    oldReserve.setReserveDate(reserve.getReserveDate());
-    oldReserve.setReserveNumberOfPeople(reserve.getReserveNumberOfPeople());
-
-    return reserveService.getDetailListByReserveId(id);
+    return reserveService.updateReserve(reserveId, reserve);
   }
 
   /** 예약 취소하는 부분 */
-  // TODO: 예약 n 시간 전까지 취소할 수 있다 라는 조건 걸어야함
   @DeleteMapping("/reserve/{reserveId}")
-  public void deleteReserve(@PathVariable Long reserveId) {
+  public void deleteReserve(@PathVariable Long reserveId, Reserve reserve) {
     System.out.println("try deleteReserve");
     reserveService.deleteReserve(reserveId);
   }
