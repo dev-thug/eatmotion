@@ -52,8 +52,13 @@ public class SentimentService {
           response.append(inputLine);
         }
         br.close();
-        return response.toString();
-        //                System.out.println(response.toString());
+
+        JSONObject jsonObject = new JSONObject(response.toString());
+        JSONObject document = jsonObject.getJSONObject("document");
+        JSONObject confidence = document.getJSONObject("confidence");
+        double positiveDouble = confidence.getDouble("positive");
+
+        return String.valueOf(positiveDouble);
       }
 
     } catch (Exception e) {
