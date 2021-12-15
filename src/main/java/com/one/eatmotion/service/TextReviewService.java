@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -13,6 +15,11 @@ public class TextReviewService {
 
   private final TextReviewRepository textReviewRepository;
   private final SentimentService sentimentService;
+
+  /** onetoone으로 Receipt랑 Face 관계 맺고 가져오는 방법 */
+  public List<TextReview> findAllByShopId(Long shopId) {
+    return textReviewRepository.findAllByShopId(shopId);
+  }
 
   @Transactional
   public TextReview saveTextReview(TextReview textReview) {
