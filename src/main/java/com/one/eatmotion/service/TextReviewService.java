@@ -28,4 +28,9 @@ public class TextReviewService {
     textReview.setGrade(Double.valueOf(sentimentService.sentiment(content)));
     return textReview;
   }
+
+  @Transactional
+  public void deleteById(Long id) {
+    textReviewRepository.deleteById(id);
+  }
 }
