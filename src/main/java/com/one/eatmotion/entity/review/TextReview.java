@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Getter
 @Builder
 @Setter
+@ToString
 public class TextReview {
 
   @Id @GeneratedValue private Long id;

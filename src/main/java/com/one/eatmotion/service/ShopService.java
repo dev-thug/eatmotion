@@ -17,6 +17,10 @@ public class ShopService {
 
   private final Distance distance;
 
+  public Shop findById(Long id) {
+    return shopRepository.findById(id).orElseThrow();
+  }
+
   public List<Shop> findByNameContaining(String keyword) {
     return shopRepository.findByNameContaining(keyword);
   }
