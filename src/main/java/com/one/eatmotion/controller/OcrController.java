@@ -20,13 +20,13 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class OcrController {
-	
+
 	private final ShopService shopService;
-	
+
 	@Autowired
 	OcrService ocrService;
 
-	
+
 	@PostMapping("ocrCheck")
 	@ResponseBody
 	public String OcrCheck(MultipartFile uploadFile) {
@@ -44,20 +44,16 @@ public class OcrController {
 						}
 					}
 					return "해당 음식점은 등록되지 않았습니다.";
-					
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					return "error";
-				} catch (IOException e) {
+
+      } catch (IllegalStateException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 					return "error";
 				}
-			}
+    }
 		return "error";
 	}
-	
+
 	@PostMapping("ocrSave")
 	@ResponseBody
 	public List<Shop> OcrSave(MultipartFile uploadFile) {
@@ -69,16 +65,12 @@ public class OcrController {
 				List<Shop> checkaddress = shopService.findByAddress(address);
 				System.out.println(checkaddress);
 				return checkaddress;
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			} catch (IOException e) {
+      } catch (IllegalStateException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return null;
 			}
-			
+
 		}
 		return null;
 	}

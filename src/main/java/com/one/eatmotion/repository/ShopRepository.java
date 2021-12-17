@@ -9,19 +9,15 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-/**
- * Todo: 모든 find method들 orderby평점, limit 개수 걸어야함, Review entity에 평점 만들고 Rank entity에 ManyToOne 관계
- * 평점을 shop에 놓고 계속 갱신 지정해서 평균 낸 다음 평균으로 orderby 해야 할 듯
- */
+/** 50개, 점수순으로 나오는 상황 */
 public interface ShopRepository extends JpaRepository<Shop, Long> {
 
-  /** Todo: 점수 순으로 n개 limit 해야함, pageable 사용 평점순 */
+  List<Shop> findTop50ByNameContainingOrderByGrade(String keword);
+
+  List<Shop> findTop50ByAddressOrderByGrade(String address);
+
   String HAVERSINE_PART =
       "(6371 * acos(cos(radians(:userY)) * cos(radians(y)) * cos(radians(x) - radians(:userX)) + sin(radians(:userY)) * sin(radians(y))))";
-
-  List<Shop> findByNameContaining(String keword);
-
-  List<Shop> findByAddress(String address);
 
   @Query(
       "SELECT s FROM Shop s WHERE "
@@ -41,5 +37,5 @@ public interface ShopRepository extends JpaRepository<Shop, Long> {
     return findShopByCoordinates(userX, userY, distance, PageRequest.of(0, 30));
   }
 
-  List<Shop> findShopByFoodClassific(String foodClassific);
+  List<Shop> findTop50ShopByFoodClassificOrderByGrade(String foodClassific);
 }

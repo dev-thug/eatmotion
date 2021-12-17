@@ -1,4 +1,8 @@
 spring:
+  batch:
+    job:
+      enabled: false
+
   h2:
     console:
       enabled: true
@@ -25,3 +29,8 @@ secret:
 
 server:
   port: 8081
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true

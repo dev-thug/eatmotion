@@ -15,10 +15,10 @@ public class SentimentService {
   final String clientId = "5eu50cwdvd"; // 애플리케이션 클라이언트 아이디값";
   final String clientSecret = "g42Rfm6qnHA2A8E2Ypjmeo4A7Hq8c8eVXYlAh3Un"; // 애플리케이션 클라이언트 시크릿값";
 
-  public String sentiment(String text) {
+  public Double sentiment(String content) {
     try {
       JSONObject jo = new JSONObject();
-      jo.put("content", text);
+      jo.put("content", content);
       String requestBody = jo.toString();
 
       String apiURL = "https://naveropenapi.apigw.ntruss.com/sentiment-analysis/v1/analyze";
@@ -58,12 +58,12 @@ public class SentimentService {
         JSONObject confidence = document.getJSONObject("confidence");
         double positiveDouble = confidence.getDouble("positive");
 
-        return String.valueOf(positiveDouble);
+        return positiveDouble;
       }
 
     } catch (Exception e) {
       System.out.println(e);
     }
-    return "false";
+    return null;
   }
 }
