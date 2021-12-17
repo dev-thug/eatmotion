@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class TextReviewService {
 
   private final TextReviewRepository textReviewRepository;
@@ -23,6 +25,7 @@ public class TextReviewService {
     return textReviewRepository.findAllByShopId(shopId);
   }
 
+  @Transactional
   public TextReview saveTextReview(String content, Long shopId) {
     User user = userService.getAuthedUser();
     TextReview textReview = new TextReview();
@@ -30,20 +33,28 @@ public class TextReviewService {
     textReview.setUser(user);
     textReview.setShop(shopService.findById(shopId));
     textReview.setGrade(sentimentService.sentiment(textReview.getContent()));
-    System.out.println(textReview);
     return textReviewRepository.save(textReview);
   }
 
   @Transactional
-  public TextReview updateTextReview(Long id, String content) {
+  public TextReview updateTextReview(Long id, String content) throws Exception {
     TextReview textReview = textReviewRepository.getById(id);
+    User user = userService.getAuthedUser();
+    if (!Objects.equals(user.getId(), textReview.getUser().getId())) {
+      throw new Exception();
+    }
     textReview.setContent(content);
     textReview.setGrade(sentimentService.sentiment(content));
     return textReview;
   }
 
   @Transactional
-  public void deleteById(Long id) {
+  public void deleteById(Long id) throws Exception {
+    TextReview textReview = textReviewRepository.getById(id);
+    User user = userService.getAuthedUser();
+    if (!Objects.equals(user.getId(), textReview.getUser().getId())) {
+      throw new Exception();
+    }
     textReviewRepository.deleteById(id);
   }
 }

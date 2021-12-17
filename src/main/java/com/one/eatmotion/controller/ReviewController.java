@@ -40,13 +40,30 @@ public class ReviewController {
     return textReviewService.saveTextReview(content, shopId);
   }
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(
+        name = "AUTH-TOKEN",
+        value = "허가된 유요한 토큰",
+        required = true,
+        dataType = "String",
+        paramType = "header")
+  })
   @PutMapping("/{shopId}/review")
-  public TextReview updateReview(@PathVariable Long shopId, Long id, String content) {
+  public TextReview updateReview(@PathVariable Long shopId, Long id, String content)
+      throws Exception {
     return textReviewService.updateTextReview(id, content);
   }
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(
+        name = "AUTH-TOKEN",
+        value = "허가된 유요한 토큰",
+        required = true,
+        dataType = "String",
+        paramType = "header")
+  })
   @DeleteMapping("/{shopId}/review")
-  public void deleteReview(@PathVariable Long shopId, Long id) {
+  public void deleteReview(@PathVariable Long shopId, Long id) throws Exception {
     textReviewService.deleteById(id);
   }
 }
