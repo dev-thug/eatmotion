@@ -4,9 +4,11 @@ import com.one.eatmotion.entity.User;
 import com.one.eatmotion.entity.review.TextReview;
 import com.one.eatmotion.repository.TextReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.nio.channels.AcceptPendingException;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,11 +39,11 @@ public class TextReviewService {
   }
 
   @Transactional
-  public TextReview updateTextReview(Long id, String content) throws Exception {
+  public TextReview updateTextReview(Long id, String content) {
     TextReview textReview = textReviewRepository.getById(id);
     User user = userService.getAuthedUser();
     if (!Objects.equals(user.getId(), textReview.getUser().getId())) {
-      throw new Exception();
+      throw new AccessDeniedException("접근이 권한이 없습니다.");
     }
     textReview.setContent(content);
     textReview.setGrade(sentimentService.sentiment(content));
@@ -49,11 +51,11 @@ public class TextReviewService {
   }
 
   @Transactional
-  public void deleteById(Long id) throws Exception {
+  public void deleteById(Long id) {
     TextReview textReview = textReviewRepository.getById(id);
     User user = userService.getAuthedUser();
     if (!Objects.equals(user.getId(), textReview.getUser().getId())) {
-      throw new Exception();
+      throw new AccessDeniedException("접근이 권한이 없습니다.");
     }
     textReviewRepository.deleteById(id);
   }

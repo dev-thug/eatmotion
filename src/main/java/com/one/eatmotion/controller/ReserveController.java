@@ -40,14 +40,14 @@ public class ReserveController {
    * <p>reserveDate랑 reserveNumberOfPeople만 바꿀 수 있음 (임시)
    */
   @PutMapping("/reserve/{id}")
-  public Reserve editReserve(@PathVariable Long id, @RequestBody Reserve reserve) throws Exception {
+  public Reserve editReserve(@PathVariable Long id, @RequestBody Reserve reserve) {
 
     return reserveService.updateReserve(id, reserve);
   }
 
   /** 예약 취소하는 부분 */
   @DeleteMapping("/reserve/{reserveId}")
-  public void deleteReserve(@PathVariable Long reserveId, Reserve reserve) throws Exception {
+  public void deleteReserve(@PathVariable Long reserveId, Reserve reserve) {
     System.out.println("try deleteReserve");
     reserveService.deleteReserve(reserveId);
   }

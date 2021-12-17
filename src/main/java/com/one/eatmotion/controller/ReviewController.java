@@ -49,8 +49,7 @@ public class ReviewController {
         paramType = "header")
   })
   @PutMapping("/{shopId}/review")
-  public TextReview updateReview(@PathVariable Long shopId, Long id, String content)
-      throws Exception {
+  public TextReview updateReview(@PathVariable Long shopId, Long id, String content) {
     return textReviewService.updateTextReview(id, content);
   }
 
@@ -63,7 +62,7 @@ public class ReviewController {
         paramType = "header")
   })
   @DeleteMapping("/{shopId}/review")
-  public void deleteReview(@PathVariable Long shopId, Long id) throws Exception {
+  public void deleteReview(@PathVariable Long shopId, Long id) {
     textReviewService.deleteById(id);
   }
 }
