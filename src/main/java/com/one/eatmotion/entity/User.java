@@ -20,51 +20,52 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Builder
-public class User implements UserDetails {
+public class User extends CommonDate implements UserDetails {
 
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id
-  Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    Long id;
 
-  @Column(unique = true)
-  private String email;
+    @Column(unique = true)
+    private String email;
 
-  private String name;
+    private String name;
 
-  @JsonIgnore private String password;
+    @JsonIgnore
+    private String password;
 
-  @ElementCollection(fetch = FetchType.EAGER)
-  @Builder.Default
-  private List<SimpleGrantedAuthority> roles = new ArrayList<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    private List<SimpleGrantedAuthority> roles = new ArrayList<>();
 
-  @JsonIgnore
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return this.roles;
-  }
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles;
+    }
 
-  @Override
-  public String getUsername() {
-    return this.email;
-  }
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return false;
-  }
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
 
-  @Override
-  public boolean isAccountNonLocked() {
-    return false;
-  }
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
 
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return false;
-  }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
 
-  @Override
-  public boolean isEnabled() {
-    return false;
-  }
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }
