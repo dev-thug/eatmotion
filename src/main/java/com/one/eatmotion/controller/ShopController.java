@@ -43,4 +43,9 @@ public class ShopController {
   public Shop shopTemp(@RequestBody Shop shop) {
     return shopService.shopTemp(shop);
   }
+
+  @PostMapping("/shop/temp2")
+  public void shopTemp2(Long id) {
+    shopService.updateShopGrade(id);
+  }
 }

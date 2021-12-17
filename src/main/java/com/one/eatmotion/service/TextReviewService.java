@@ -8,7 +8,6 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.channels.AcceptPendingException;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,6 +25,7 @@ public class TextReviewService {
   public List<TextReview> findAllByShopId(Long shopId) {
     return textReviewRepository.findAllByShopId(shopId);
   }
+
 
   @Transactional
   public TextReview saveTextReview(String content, Long shopId) {
