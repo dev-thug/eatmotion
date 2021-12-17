@@ -65,6 +65,15 @@ public class ExceptionAdvice {
         .build();
   }
 
+  @ExceptionHandler(ReserveTimeOverException.class)
+  @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+  protected AppError reserveTimeOverException(HttpServletRequest request, AccessDeniedException e) {
+    return AppError.builder()
+        .code(Integer.valueOf(getMessage("reserveTimeOver.code")))
+        .message(getMessage("reserveTimeOver.message"))
+        .build();
+  }
+
   // code 정보에 해당하는 메시지를 조회합니다.
   private String getMessage(String code) {
     return getMessage(code, null);

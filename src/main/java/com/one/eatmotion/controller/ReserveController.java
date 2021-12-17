@@ -15,11 +15,9 @@ public class ReserveController {
   private final ReserveService reserveService;
 
   /** 매장 상세 페이지에서 시작한다고 가정 */
-  @PostMapping("/reserve/{storeId}")
-  public Reserve makeReserve(@PathVariable Long storeId, @RequestBody Reserve reserve) {
-    System.out.println("try reserve/{id}");
-    //		reserveService.makeReserve(reserve);
-    return reserveService.makeReserve(reserve);
+  @PostMapping("/reserve/{shopId}")
+  public Reserve makeReserve(@PathVariable Long shopId, @RequestBody Reserve reserve) {
+    return reserveService.makeReserve(reserve, shopId);
   }
 
   /** 예약 리스트 부분 */
@@ -42,14 +40,14 @@ public class ReserveController {
    * <p>reserveDate랑 reserveNumberOfPeople만 바꿀 수 있음 (임시)
    */
   @PutMapping("/reserve/{id}")
-  public Reserve editReserve(@PathVariable Long reserveId, @RequestBody Reserve reserve) {
+  public Reserve editReserve(@PathVariable Long id, @RequestBody Reserve reserve) throws Exception {
 
-    return reserveService.updateReserve(reserveId, reserve);
+    return reserveService.updateReserve(id, reserve);
   }
 
   /** 예약 취소하는 부분 */
   @DeleteMapping("/reserve/{reserveId}")
-  public void deleteReserve(@PathVariable Long reserveId, Reserve reserve) {
+  public void deleteReserve(@PathVariable Long reserveId, Reserve reserve) throws Exception {
     System.out.println("try deleteReserve");
     reserveService.deleteReserve(reserveId);
   }

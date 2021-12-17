@@ -13,3 +13,6 @@ invalidPassword:
 accessDenied:
   code: "9000"
   message: "접근이 권한이 없습니다."
+reserveTimeOver:
+  code: "6000"
+  message: "예약 취소와 변경은 예약시간 2시간 전까지 가능합니다."
