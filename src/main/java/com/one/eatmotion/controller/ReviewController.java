@@ -5,6 +5,8 @@ import com.one.eatmotion.entity.review.TextReview;
 import com.one.eatmotion.service.ReviewService;
 import com.one.eatmotion.service.SentimentService;
 import com.one.eatmotion.service.TextReviewService;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,19 +26,44 @@ public class ReviewController {
     return textReviewService.findAllByShopId(shopId);
   }
 
-  /** 런타임 404 * */
+  /** ! Todo: 런타임 404 해결해야함 save는 잘 됨 * */
+  @ApiImplicitParams({
+    @ApiImplicitParam(
+        name = "AUTH-TOKEN",
+        value = "허가된 유요한 토큰",
+        required = true,
+        dataType = "String",
+        paramType = "header")
+  })
   @PostMapping("/{shopId}/review")
-  public TextReview saveReview(@PathVariable Long shopId, TextReview textReview) {
-    return textReviewService.saveTextReview(textReview);
+  public TextReview saveReview(@RequestBody String content, @PathVariable Long shopId) {
+    return textReviewService.saveTextReview(content, shopId);
   }
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(
+        name = "AUTH-TOKEN",
+        value = "허가된 유요한 토큰",
+        required = true,
+        dataType = "String",
+        paramType = "header")
+  })
   @PutMapping("/{shopId}/review")
-  public TextReview updateReview(@PathVariable Long shopId, Long id, String content) {
+  public TextReview updateReview(@PathVariable Long shopId, Long id, String content)
+      throws Exception {
     return textReviewService.updateTextReview(id, content);
   }
 
+  @ApiImplicitParams({
+    @ApiImplicitParam(
+        name = "AUTH-TOKEN",
+        value = "허가된 유요한 토큰",
+        required = true,
+        dataType = "String",
+        paramType = "header")
+  })
   @DeleteMapping("/{shopId}/review")
-  public void deleteReview(@PathVariable Long shopId, Long id) {
+  public void deleteReview(@PathVariable Long shopId, Long id) throws Exception {
     textReviewService.deleteById(id);
   }
 }

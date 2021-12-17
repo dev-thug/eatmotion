@@ -18,16 +18,15 @@ public class Reserve {
   @Id
   private Long id; // ReserveId
 
-  private Long userId;
-
-  private Long storeId;
-
   @CreatedDate private LocalDateTime userReserved = LocalDateTime.now();
 
   private LocalDateTime reserveDateTime;
 
   private Integer reserveNumberOfPeople;
 
-  //    @ManyToOne
-  //    User user;
+  @ManyToOne(fetch = FetchType.LAZY)
+  User user;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  Shop shop;
 }

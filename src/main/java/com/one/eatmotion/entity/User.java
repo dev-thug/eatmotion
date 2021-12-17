@@ -1,10 +1,7 @@
 package com.one.eatmotion.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Builder
+@ToString
 public class User implements UserDetails {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
