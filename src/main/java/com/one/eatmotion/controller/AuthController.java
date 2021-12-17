@@ -1,5 +1,6 @@
 package com.one.eatmotion.controller;
 
+import com.one.eatmotion.dto.LoginDTO;
 import com.one.eatmotion.dto.UserDTO;
 import com.one.eatmotion.entity.User;
 import com.one.eatmotion.service.UserService;
@@ -18,23 +19,23 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class AuthController {
-  private final UserService userService;
+    private final UserService userService;
 
-  @ApiOperation(value = "회원 로그인", notes = "회원의 Email, Password로 로그인 후 JWT토큰 발급")
-  @PostMapping("/login")
-  public ResponseEntity<?> signIn(
-      @ApiParam(value = "회원 이메일", required = true) @RequestParam String email,
-      @ApiParam(value = "회원 비밀번호", required = true) @RequestParam String password)
-      throws Exception {
-    Map<String, String> map = new HashMap<>();
-    map.put("AUTH-TOKEN", userService.getToken(email, password));
+    @ApiOperation(value = "회원 로그인", notes = "회원의 Email, Password로 로그인 후 JWT토큰 발급")
+    @PostMapping("/login")
+    public ResponseEntity<?> signIn(
+            @RequestBody LoginDTO loginDTO)
+            throws Exception {
 
-    return ResponseEntity.accepted().body(map);
-  }
+        Map<String, String> map = new HashMap<>();
+        map.put("AUTH-TOKEN", userService.getToken(loginDTO.getEmail(), loginDTO.getPassword()));
 
-  @ApiOperation(value = "회원 가입", notes = "Email, Password, Name 으로 회원 가입")
-  @PostMapping("/register")
-  public User register(@RequestBody UserDTO userDTO) {
-    return userService.add(userDTO);
-  }
+        return ResponseEntity.accepted().body(map);
+    }
+
+    @ApiOperation(value = "회원 가입", notes = "Email, Password, Name 으로 회원 가입")
+    @PostMapping("/register")
+    public User register(@RequestBody UserDTO userDTO) {
+        return userService.add(userDTO);
+    }
 }
