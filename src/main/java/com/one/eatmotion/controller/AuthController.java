@@ -28,7 +28,7 @@ public class AuthController {
             throws Exception {
 
         Map<String, String> map = new HashMap<>();
-        map.put("AUTH-TOKEN", userService.getToken(loginDTO.getEmail(), loginDTO.getPassword()));
+        map.put("authToken", userService.getToken(loginDTO.getEmail(), loginDTO.getPassword()));
 
         return ResponseEntity.accepted().body(map);
     }
