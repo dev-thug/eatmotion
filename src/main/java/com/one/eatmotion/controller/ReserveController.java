@@ -74,7 +74,7 @@ public class ReserveController {
         paramType = "header")
   })
   @PutMapping("/reserve/{id}")
-  public Reserve editReserve(@PathVariable Long id, @RequestBody Reserve reserve) {
+  public Reserve editReserve(@PathVariable Long id, @RequestBody ReserveDTO reserve) {
 
     return reserveService.updateReserve(id, reserve);
   }

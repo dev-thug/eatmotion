@@ -55,7 +55,7 @@ public class ReserveService {
   }
 
   @Transactional
-  public Reserve updateReserve(Long id, Reserve reserve) {
+  public Reserve updateReserve(Long id, ReserveDTO reserveDTO) {
     Reserve updatedReserve = reserveRepository.getDetailListById(id);
 
     User user = userService.getAuthedUser();
@@ -70,8 +70,8 @@ public class ReserveService {
     Duration duration = Duration.between(now, reserveTime);
 
     if (duration.getSeconds() < 7200) {
-      updatedReserve.setReserveDateTime(reserve.getReserveDateTime());
-      updatedReserve.setReserveNumberOfPeople(reserve.getReserveNumberOfPeople());
+      updatedReserve.setReserveDateTime(reserveDTO.getReserveDateTime());
+      updatedReserve.setReserveNumberOfPeople(reserveDTO.getReserveNumberOfPeople());
       return updatedReserve;
     } else {
       throw new ReserveTimeOverException();
