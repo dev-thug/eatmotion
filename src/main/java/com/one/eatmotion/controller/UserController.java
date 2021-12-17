@@ -25,7 +25,7 @@ public class UserController {
 
   @ApiImplicitParams({
     @ApiImplicitParam(
-        name = "AUTH-TOKEN",
+        name = "authToken",
         value = "허가된 유요한 토큰",
         required = true,
         dataType = "String",

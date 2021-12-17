@@ -67,7 +67,7 @@ public class TokenProvider {
   }
 
   public String resolveToken(HttpServletRequest httpServletRequest) {
-    return httpServletRequest.getHeader("AUTH-TOKEN");
+    return httpServletRequest.getHeader("authToken");
   }
 
   public boolean validateToken(String token) {

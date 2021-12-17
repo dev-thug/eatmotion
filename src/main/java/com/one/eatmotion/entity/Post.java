@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @Builder
 @Setter
-public class Post {
+public class Post extends CommonDate{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
