@@ -3,7 +3,6 @@ package com.one.eatmotion.controller;
 import com.one.eatmotion.entity.Reserve;
 import com.one.eatmotion.service.ReserveService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

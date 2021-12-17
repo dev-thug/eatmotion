@@ -25,8 +25,8 @@ public class Reserve {
   private Integer reserveNumberOfPeople;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  User user;
+  private User user;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  Shop shop;
+  private Shop shop;
 }

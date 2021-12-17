@@ -8,6 +8,7 @@ import com.one.eatmotion.repository.ReserveRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.channels.AcceptPendingException;
 import java.time.Duration;
@@ -17,6 +18,7 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ReserveService {
 
   private final ReserveRepository reserveRepository;
@@ -27,6 +29,7 @@ public class ReserveService {
     return reserveRepository.getListByUserId(userId);
   }
 
+  @Transactional
   public Reserve makeReserve(Reserve reserve, Long shopId) {
     User user = userService.getAuthedUser();
     Shop shop = shopService.findById(shopId);
@@ -45,6 +48,7 @@ public class ReserveService {
     return reserveRepository.getDetailListById(id);
   }
 
+  @Transactional
   public Reserve updateReserve(Long id, Reserve reserve) {
     Reserve updatedReserve = reserveRepository.getDetailListById(id);
 
@@ -68,6 +72,7 @@ public class ReserveService {
     }
   }
 
+  @Transactional
   public void deleteReserve(Long id) {
 
     Reserve reserve = reserveRepository.findById(id).orElseThrow();
