@@ -23,6 +23,10 @@ public class ShopService {
   private final Distance distance;
   private final TextReviewRepository textReviewRepository;
 
+  public int countShop() {
+    return (int) shopRepository.count();
+  }
+
   @Transactional
   public void updateShopGrade(Long id) {
     Shop shop = shopRepository.findById(id).orElseThrow();
