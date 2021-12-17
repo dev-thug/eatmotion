@@ -1,6 +1,7 @@
 package com.one.eatmotion.service;
 
 import com.one.eatmotion.advice.exception.ReserveTimeOverException;
+import com.one.eatmotion.dto.ReserveDTO;
 import com.one.eatmotion.entity.Reserve;
 import com.one.eatmotion.entity.Shop;
 import com.one.eatmotion.entity.User;
@@ -30,11 +31,16 @@ public class ReserveService {
   }
 
   @Transactional
-  public Reserve makeReserve(Reserve reserve, Long shopId) {
+  public Reserve makeReserve(ReserveDTO reserveDTO, Long shopId) {
     User user = userService.getAuthedUser();
     Shop shop = shopService.findById(shopId);
-    reserve.setShop(shop);
-    reserve.setUser(user);
+    Reserve reserve =
+        Reserve.builder()
+            .reserveDateTime(reserveDTO.getReserveDateTime())
+            .reserveNumberOfPeople(reserveDTO.getReserveNumberOfPeople())
+            .user(user)
+            .shop(shop)
+            .build();
     return reserveRepository.save(reserve);
   }
 
@@ -49,7 +55,7 @@ public class ReserveService {
   }
 
   @Transactional
-  public Reserve updateReserve(Long id, Reserve reserve) {
+  public Reserve updateReserve(Long id, ReserveDTO reserveDTO) {
     Reserve updatedReserve = reserveRepository.getDetailListById(id);
 
     User user = userService.getAuthedUser();
@@ -64,8 +70,8 @@ public class ReserveService {
     Duration duration = Duration.between(now, reserveTime);
 
     if (duration.getSeconds() < 7200) {
-      updatedReserve.setReserveDateTime(reserve.getReserveDateTime());
-      updatedReserve.setReserveNumberOfPeople(reserve.getReserveNumberOfPeople());
+      updatedReserve.setReserveDateTime(reserveDTO.getReserveDateTime());
+      updatedReserve.setReserveNumberOfPeople(reserveDTO.getReserveNumberOfPeople());
       return updatedReserve;
     } else {
       throw new ReserveTimeOverException();

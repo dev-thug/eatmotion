@@ -41,7 +41,7 @@ public class ShopService {
   }
 
   public List<Shop> findByNameContaining(String keyword) {
-    return shopRepository.findByNameContaining(keyword);
+    return shopRepository.findTop50ByNameContainingOrderByGrade(keyword);
   }
 
   @Transactional
@@ -59,10 +59,10 @@ public class ShopService {
   }
 
   public List<Shop> findShopByFoodClassific(String foodClassific) {
-    return shopRepository.findShopByFoodClassific(foodClassific);
+    return shopRepository.findTop50ShopByFoodClassificOrderByGrade(foodClassific);
   }
 
   public List<Shop> findByAddress(String address) {
-    return shopRepository.findByAddress(address);
+    return shopRepository.findTop50ByAddressOrderByGrade(address);
   }
 }

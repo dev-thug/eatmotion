@@ -1,5 +1,4 @@
 spring:
-
   batch:
     job:
       enabled: false
@@ -20,7 +19,7 @@ spring:
     properties:
       hibernate:
         format_sql: false
-        show_sql: true
+        show_sql: false
   messages:
     basename: i18n/exception
     encoding: UTF-8
@@ -30,3 +29,8 @@ secret:
 
 server:
   port: 8081
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
