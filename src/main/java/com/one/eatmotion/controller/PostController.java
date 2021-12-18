@@ -4,27 +4,20 @@ import com.one.eatmotion.dto.PostDTO;
 import com.one.eatmotion.entity.Board;
 import com.one.eatmotion.entity.Post;
 import com.one.eatmotion.repository.BoardRepository;
-import com.one.eatmotion.repository.PostRepository;
 import com.one.eatmotion.service.PostService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.server.RequestPath;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
-import java.util.List;
-
+@Api(tags = {"3. 게시판 기능"})
 @RestController
 @RequiredArgsConstructor
 public class PostController {

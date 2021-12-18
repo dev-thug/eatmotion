@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class Scheduler {
 
-  private final ShopService shopService;
+    private final ShopService shopService;
 
-  @Scheduled(fixedDelay = 600 * 1000L, initialDelay = 600 * 1000L)
-  public void executeUpdateShopGrade() {
-    for (int i = 0; i < shopService.countShop(); i++) {
-      shopService.updateShopGrade((long) i);
+    @Scheduled(fixedDelay = 600 * 1000L, initialDelay = 600 * 1000L)
+    public void executeUpdateShopGrade() {
+        for (int i = 0; i < shopService.countShop(); i++) {
+            shopService.updateShopGrade((long) i);
+        }
     }
-  }
 }
