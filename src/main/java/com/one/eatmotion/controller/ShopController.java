@@ -49,14 +49,14 @@ public class ShopController {
     }
 
 
-    @Secured("ROLE_ADMIN")
+//    @Secured("ROLE_ADMIN")
     @ApiOperation(value = "음식점 추가", notes = "[테스트]")
     @PostMapping("/shop")
     public Shop shopAdd(@RequestBody Shop shop) {
         return shopService.shopTemp(shop);
     }
 
-    @Secured("ROLE_ADMIN")
+//    @Secured("ROLE_ADMIN")
     @ApiOperation(value = "평점 추가", notes = "[테스트]평점 수동 추가")
     @PostMapping("/shop/grade/{id}")
     public void shopTemp2(@PathVariable Long id) {

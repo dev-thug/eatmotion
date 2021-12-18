@@ -17,25 +17,18 @@ import java.time.LocalDateTime;
 @ToString
 public class TextReview extends CommonDate {
 
-  @Id @GeneratedValue private Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-  private String content;
+    private String content;
 
-  private Double grade;
+    private Double grade;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private Shop shop;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Shop shop;
 
-  @Override
-  public LocalDateTime getCreatedDate() {
-    return super.getCreatedDate();
-  }
-
-  @Override
-  public LocalDateTime getModifiedDate() {
-    return super.getModifiedDate();
-  }
 }
