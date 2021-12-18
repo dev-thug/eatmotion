@@ -12,13 +12,11 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @Setter
-public class Reserve {
+public class Reserve extends CommonDate {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
-  private Long id; // ReserveId
-
-  @CreatedDate private LocalDateTime userReserved = LocalDateTime.now();
+  private Long id;
 
   private LocalDateTime reserveDateTime;
 
@@ -29,4 +27,14 @@ public class Reserve {
 
   @ManyToOne(fetch = FetchType.LAZY)
   private Shop shop;
+
+  @Override
+  public LocalDateTime getModifiedDate() {
+    return super.getModifiedDate();
+  }
+
+  @Override
+  public LocalDateTime getCreatedDate() {
+    return super.getCreatedDate();
+  }
 }
