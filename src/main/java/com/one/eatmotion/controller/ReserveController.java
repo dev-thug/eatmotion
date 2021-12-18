@@ -56,7 +56,6 @@ public class ReserveController {
   })
   @GetMapping("/reserve/detail/{id}")
   public Reserve listDetailReserve(@PathVariable Long id) {
-    System.out.println("try listReserve/{reserveId}");
     return reserveService.getDetailListByReserveId(id);
   }
 

@@ -10,7 +10,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SentimentService {
+public class NaverSentiment {
 
   final String clientId = "5eu50cwdvd"; // 애플리케이션 클라이언트 아이디값";
   final String clientSecret = "g42Rfm6qnHA2A8E2Ypjmeo4A7Hq8c8eVXYlAh3Un"; // 애플리케이션 클라이언트 시크릿값";
