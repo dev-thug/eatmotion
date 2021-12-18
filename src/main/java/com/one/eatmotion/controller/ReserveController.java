@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Api(tags = {"4. 맛집 리뷰"})
+@RequestMapping("/api")
 @RestController
 @RequiredArgsConstructor
 public class ReserveController {
@@ -48,7 +49,7 @@ public class ReserveController {
                     dataType = "String",
                     paramType = "header")
     })
-    @ApiOperation(value = "예약 조회", notes = "내가 예약한 음식")
+    @ApiOperation(value = "예약 조회", notes = "내가 예약한 음식점 리스트")
     public List<Reserve> listReserve() {
         System.out.println("try listReserve/{userId}");
         return reserveService.findAllByUser();
@@ -57,6 +58,7 @@ public class ReserveController {
     /**
      * 예약 상세정보 확인하는 부분
      */
+    @ApiOperation(value = "예약 상세 조회", notes = "회원이 예약한 정보 상세 조회")
     @ApiImplicitParams({
             @ApiImplicitParam(
                     name = "authToken",
@@ -85,6 +87,7 @@ public class ReserveController {
                     paramType = "header")
     })
     @PutMapping("/reserve/{id}")
+    @ApiOperation(value = "예약 변경", notes = "회원이 자신이 예약한 정보를 수정")
     public Reserve editReserve(@PathVariable Long id, @RequestBody ReserveDTO reserve) {
 
         return reserveService.updateReserve(id, reserve);
@@ -101,6 +104,7 @@ public class ReserveController {
                     dataType = "String",
                     paramType = "header")
     })
+    @ApiOperation(value = "예약 취소", notes = "회원이 예약을 취소한다")
     @DeleteMapping("/reserve/{reserveId}")
     public void deleteReserve(@PathVariable Long reserveId) {
         System.out.println("try deleteReserve");
