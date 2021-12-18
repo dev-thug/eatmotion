@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = {"3. 게시판 기능"})
+@RequestMapping("/api")
 @RestController
 @RequiredArgsConstructor
 public class PostController {
@@ -54,11 +55,13 @@ public class PostController {
     }
 
     @PostMapping("board")
+    @ApiOperation(value = "게시판 생성", notes = "게시글을 작성할 게시판을 생성한다")
     public Board save(@RequestParam String name) {
         return boardRepository.save(Board.builder().name(name).build());
     }
 
     @GetMapping("posts/{boardId}")
+    @ApiOperation(value = "게시글 조회", notes = "게시판에 해당하는 게시글을 조회한다")
     public Page<Post> findAll(
             @PathVariable Long boardId,
             @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
