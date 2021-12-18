@@ -4,27 +4,21 @@ import com.one.eatmotion.dto.PostDTO;
 import com.one.eatmotion.entity.Board;
 import com.one.eatmotion.entity.Post;
 import com.one.eatmotion.repository.BoardRepository;
-import com.one.eatmotion.repository.PostRepository;
 import com.one.eatmotion.service.PostService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.server.RequestPath;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
-import java.util.List;
-
+@Api(tags = {"3. 게시판 기능"})
+@RequestMapping("/api")
 @RestController
 @RequiredArgsConstructor
 public class PostController {
@@ -61,11 +55,13 @@ public class PostController {
     }
 
     @PostMapping("board")
+    @ApiOperation(value = "게시판 생성", notes = "게시글을 작성할 게시판을 생성한다")
     public Board save(@RequestParam String name) {
         return boardRepository.save(Board.builder().name(name).build());
     }
 
     @GetMapping("posts/{boardId}")
+    @ApiOperation(value = "게시글 조회", notes = "게시판에 해당하는 게시글을 조회한다")
     public Page<Post> findAll(
             @PathVariable Long boardId,
             @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {

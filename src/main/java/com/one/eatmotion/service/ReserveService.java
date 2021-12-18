@@ -26,8 +26,9 @@ public class ReserveService {
   private final UserService userService;
   private final ShopService shopService;
 
-  public List<Reserve> getListByUserId(Long userId) {
-    return reserveRepository.getListByUserId(userId);
+  public List<Reserve> findAllByUser() {
+    User user = userService.getAuthedUser();
+    return reserveRepository.findAllByUser(user);
   }
 
   @Transactional
