@@ -17,7 +17,7 @@ import java.util.Objects;
 public class TextReviewService {
 
   private final TextReviewRepository textReviewRepository;
-  private final SentimentService sentimentService;
+  private final NaverSentiment sentimentService;
   private final UserService userService;
   private final ShopService shopService;
 

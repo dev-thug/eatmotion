@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@Api(tags = {"1, 회원 인증"})
+@Api(tags = {"1. 회원 인증"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
