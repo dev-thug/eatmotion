@@ -29,7 +29,7 @@ public class ReviewController {
   /** ! Todo: 런타임 404 해결해야함 save는 잘 됨 * */
   @ApiImplicitParams({
     @ApiImplicitParam(
-        name = "AUTH-TOKEN",
+        name = "authToken",
         value = "허가된 유요한 토큰",
         required = true,
         dataType = "String",
@@ -42,7 +42,7 @@ public class ReviewController {
 
   @ApiImplicitParams({
     @ApiImplicitParam(
-        name = "AUTH-TOKEN",
+        name = "authToken",
         value = "허가된 유요한 토큰",
         required = true,
         dataType = "String",
@@ -55,7 +55,7 @@ public class ReviewController {
 
   @ApiImplicitParams({
     @ApiImplicitParam(
-        name = "AUTH-TOKEN",
+        name = "authToken",
         value = "허가된 유요한 토큰",
         required = true,
         dataType = "String",

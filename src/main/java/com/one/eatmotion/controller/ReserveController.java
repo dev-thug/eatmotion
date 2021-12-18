@@ -19,7 +19,7 @@ public class ReserveController {
   /** 매장 상세 페이지에서 시작한다고 가정 */
   @ApiImplicitParams({
     @ApiImplicitParam(
-        name = "AUTH-TOKEN",
+        name = "authToken",
         value = "허가된 유요한 토큰",
         required = true,
         dataType = "String",
@@ -34,7 +34,7 @@ public class ReserveController {
   @GetMapping("/reserve/{userId}")
   @ApiImplicitParams({
     @ApiImplicitParam(
-        name = "AUTH-TOKEN",
+        name = "authToken",
         value = "허가된 유요한 토큰",
         required = true,
         dataType = "String",
@@ -48,7 +48,7 @@ public class ReserveController {
   /** 예약 상세정보 확인하는 부분 */
   @ApiImplicitParams({
     @ApiImplicitParam(
-        name = "AUTH-TOKEN",
+        name = "authToken",
         value = "허가된 유요한 토큰",
         required = true,
         dataType = "String",
@@ -67,7 +67,7 @@ public class ReserveController {
    */
   @ApiImplicitParams({
     @ApiImplicitParam(
-        name = "AUTH-TOKEN",
+        name = "authToken",
         value = "허가된 유요한 토큰",
         required = true,
         dataType = "String",
@@ -82,7 +82,7 @@ public class ReserveController {
   /** 예약 취소하는 부분 */
   @ApiImplicitParams({
     @ApiImplicitParam(
-        name = "AUTH-TOKEN",
+        name = "authToken",
         value = "허가된 유요한 토큰",
         required = true,
         dataType = "String",
