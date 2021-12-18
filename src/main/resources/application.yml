@@ -34,3 +34,8 @@ decorator:
   datasource:
     p6spy:
       enable-logging: true
+
+api:
+  id: 5eu50cwdvd
+  secret: g42Rfm6qnHA2A8E2Ypjmeo4A7Hq8c8eVXYlAh3Un
+  secretKey: WWJtb3lmRHZuYmxjbXRFT2xocmZZREtRSFFReUxVUXM=
