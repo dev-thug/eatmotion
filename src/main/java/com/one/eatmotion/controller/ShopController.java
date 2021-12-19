@@ -16,7 +16,6 @@ import java.util.List;
 @Api(tags = {"5. 맛집"})
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public class ShopController {
 
     private final ShopService shopService;

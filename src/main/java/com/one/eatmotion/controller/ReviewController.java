@@ -22,7 +22,6 @@ import java.util.UUID;
 @Api(tags = {"6. 음식점 리뷰 작성"})
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public class ReviewController {
 
     private final TextReviewService textReviewService;

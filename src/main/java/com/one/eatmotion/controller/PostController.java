@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = {"3. 게시판 기능"})
-@RequestMapping("/api")
 @RestController
 @RequiredArgsConstructor
 public class PostController {
