@@ -92,7 +92,7 @@ public class ReviewController {
     })
     @PutMapping("/text-review/{shopId}")
     @ApiOperation(value = "텍스트 리뷰 수정", notes = "텍스트 리뷰 수정합니다.")
-    public TextReview updateReview(@PathVariable Long shopId, String content) {
+    public TextReview updateReview(@PathVariable Long shopId, @RequestBody String content) {
         return textReviewService.updateTextReview(shopId, content);
     }
 
