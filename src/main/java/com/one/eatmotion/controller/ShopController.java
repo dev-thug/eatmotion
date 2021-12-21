@@ -47,6 +47,12 @@ public class ShopController {
         return shopService.findShopByCoordinates(userX, userY, distance);
     }
 
+    @GetMapping("/shop/{id}")
+    @ApiOperation(value = "음식점 단건 조회", notes = "음식점의 정보를 단일건 조회 합니다.")
+    public Shop findById(@PathVariable Long id) {
+        return shopService.findById(id);
+    }
+
 
 //    @Secured("ROLE_ADMIN")
     @ApiOperation(value = "음식점 추가", notes = "[테스트]")
