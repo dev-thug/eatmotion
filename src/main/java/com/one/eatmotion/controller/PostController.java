@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = {"3. 게시판 기능"})
@@ -52,7 +53,7 @@ public class PostController {
     public Post update(@RequestBody PostDTO post, @PathVariable Long id) throws Exception {
         return postService.updatePost(post, id);
     }
-
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @PostMapping("board")
     @ApiOperation(value = "게시판 생성", notes = "게시글을 작성할 게시판을 생성한다")
     public Board save(@RequestParam String name) {
@@ -66,6 +67,15 @@ public class PostController {
             @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
         return postService.findAllByBoard(boardId, pageable);
+    }
+
+    @GetMapping("post/{postId}")
+    @ApiOperation(value = "게시글 단일 조회", notes = "게시판에 해당하는 게시글을 단일 조회한다")
+    public Post findById(
+            @PathVariable Long postId
+    ) {
+
+        return postService.findAllById(postId);
     }
 
     @ApiImplicitParams({
