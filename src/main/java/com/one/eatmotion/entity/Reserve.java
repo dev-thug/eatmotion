@@ -1,5 +1,6 @@
 package com.one.eatmotion.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -22,10 +23,12 @@ public class Reserve extends CommonDate {
 
   private Integer reserveNumberOfPeople;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @JsonIgnore
+  @ManyToOne(fetch = FetchType.EAGER)
   private User user;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @JsonIgnore
+  @ManyToOne(fetch = FetchType.EAGER)
   private Shop shop;
 
   @Override

@@ -45,14 +45,14 @@ public class ReserveService {
     return reserveRepository.save(reserve);
   }
 
-  public Reserve getDetailListByReserveId(Long id) {
+  public Reserve findAllById(Long id) {
 
     User user = userService.getAuthedUser();
     if (!Objects.equals(user.getId(), reserveRepository.getById(id).getUser().getId())) {
       throw new AccessDeniedException("접근이 권한이 없습니다.");
     }
 
-    return reserveRepository.getDetailListById(id);
+    return reserveRepository.findAllById(id);
   }
 
   @Transactional
