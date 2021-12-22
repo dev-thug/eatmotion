@@ -67,10 +67,20 @@ public class ExceptionAdvice {
 
   @ExceptionHandler(ReserveTimeOverException.class)
   @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
-  protected AppError reserveTimeOverException(HttpServletRequest request, AccessDeniedException e) {
+  protected AppError reserveTimeOverException(HttpServletRequest request, ReserveTimeOverException e) {
     return AppError.builder()
         .code(Integer.valueOf(getMessage("reserveTimeOver.code")))
         .message(getMessage("reserveTimeOver.message"))
+        .build();
+  }
+
+  @ExceptionHandler(NotAppropriateRegisterException.class)
+  @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+  protected AppError notAppropriateRegisterException(
+      HttpServletRequest request, NotAppropriateRegisterException e) {
+    return AppError.builder()
+        .code(Integer.valueOf(getMessage("notAppropriateRegister.code")))
+        .message(getMessage("notAppropriateRegister.message"))
         .build();
   }
 
