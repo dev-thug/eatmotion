@@ -39,9 +39,9 @@ dependencies {
     // 메시지 소스 라이브러리
     implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'
 
-    //Spring batch 관련
-    implementation 'org.springframework.boot:spring-boot-starter-batch'
-    implementation 'org.springframework.boot:spring-boot-starter-quartz'
+//    //Spring batch 관련
+//    implementation 'org.springframework.boot:spring-boot-starter-batch'
+//    implementation 'org.springframework.boot:spring-boot-starter-quartz'
 
 }
 
