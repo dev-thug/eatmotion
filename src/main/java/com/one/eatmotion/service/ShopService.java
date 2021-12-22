@@ -6,13 +6,10 @@ import com.one.eatmotion.entity.review.TextReview;
 import com.one.eatmotion.repository.ShopRepository;
 import com.one.eatmotion.repository.TextReviewRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

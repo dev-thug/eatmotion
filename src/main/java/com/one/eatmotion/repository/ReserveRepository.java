@@ -12,5 +12,4 @@ public interface ReserveRepository extends JpaRepository<Reserve, Long> {
 
   Reserve getDetailListById(Long id);
 
-  Reserve findAllById(Long id);
 }

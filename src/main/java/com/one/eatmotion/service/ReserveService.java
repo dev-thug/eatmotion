@@ -45,14 +45,18 @@ public class ReserveService {
     return reserveRepository.save(reserve);
   }
 
-  public Reserve findAllById(Long id) {
+  public Reserve findReserveById(Long id) {
 
     User user = userService.getAuthedUser();
+
+    /** Todo: 왜 System.out.println을 빼면 에러가 나는지 모르겠음 * */
+    System.out.println(reserveRepository.getDetailListById(id));
+
     if (!Objects.equals(user.getId(), reserveRepository.getById(id).getUser().getId())) {
       throw new AccessDeniedException("접근이 권한이 없습니다.");
     }
 
-    return reserveRepository.findAllById(id);
+    return reserveRepository.getDetailListById(id);
   }
 
   @Transactional
@@ -69,8 +73,9 @@ public class ReserveService {
     LocalDateTime now = LocalDateTime.now();
 
     Duration duration = Duration.between(now, reserveTime);
+    System.out.println(duration.getSeconds());
 
-    if (duration.getSeconds() < 7200) {
+    if (duration.getSeconds() > 7200) {
       updatedReserve.setReserveDateTime(reserveDTO.getReserveDateTime());
       updatedReserve.setReserveNumberOfPeople(reserveDTO.getReserveNumberOfPeople());
       return updatedReserve;
@@ -95,7 +100,7 @@ public class ReserveService {
 
     Duration duration = Duration.between(now, reserveTime);
 
-    if (duration.getSeconds() < 7200) {
+    if (duration.getSeconds() > 7200) {
       reserveRepository.deleteById(id);
     } else {
       throw new ReserveTimeOverException();

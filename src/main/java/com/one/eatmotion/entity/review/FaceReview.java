@@ -24,9 +24,9 @@ public class FaceReview extends CommonDate {
 
   private String filePath;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   private User user;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   private Shop shop;
 }
