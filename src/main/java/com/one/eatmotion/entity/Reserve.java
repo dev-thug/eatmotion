@@ -2,7 +2,6 @@ package com.one.eatmotion.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @Setter
+@ToString
 public class Reserve extends CommonDate {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,21 +23,10 @@ public class Reserve extends CommonDate {
 
   private Integer reserveNumberOfPeople;
 
-  @JsonIgnore
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne
   private User user;
 
-  @JsonIgnore
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne
   private Shop shop;
 
-  @Override
-  public LocalDateTime getModifiedDate() {
-    return super.getModifiedDate();
-  }
-
-  @Override
-  public LocalDateTime getCreatedDate() {
-    return super.getCreatedDate();
-  }
 }
