@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(tags = {"4. 맛집 리뷰"})
-@RequestMapping("/api")
+@Api(tags = {"4. 맛집 예약"})
 @RestController
 @RequiredArgsConstructor
 public class ReserveController {

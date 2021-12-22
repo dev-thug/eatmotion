@@ -25,7 +25,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.1'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.h2database:h2'
+//    runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
@@ -34,7 +34,11 @@ dependencies {
     implementation 'io.springfox:springfox-swagger-ui:2.7.0'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.7.1'
+//    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.7.1'
+
+    // https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
+
 
     // 메시지 소스 라이브러리
     implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'

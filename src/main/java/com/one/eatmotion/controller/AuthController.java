@@ -17,7 +17,6 @@ import java.util.Map;
 @Api(tags = {"1. 회원 인증"})
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public class AuthController {
     private final UserService userService;
 
