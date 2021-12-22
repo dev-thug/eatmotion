@@ -22,3 +22,6 @@ notAppropriateRegister:
 postBlank:
   code: "4200"
   message: "제목과 내용을 작성해주세요"
+reviewBlank:
+  code: "4300"
+  message: "리뷰를 작성해주세요"

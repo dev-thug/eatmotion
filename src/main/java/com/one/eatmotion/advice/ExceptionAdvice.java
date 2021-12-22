@@ -83,7 +83,6 @@ public class ExceptionAdvice {
         .message(getMessage("notAppropriateRegister.message"))
         .build();
   }
-  //PostBlankException
   @ExceptionHandler(PostBlankException.class)
   @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
   protected AppError postBlankException(
@@ -91,6 +90,15 @@ public class ExceptionAdvice {
     return AppError.builder()
             .code(Integer.valueOf(getMessage("postBlank.code")))
             .message(getMessage("postBlank.message"))
+            .build();
+  }
+  @ExceptionHandler(ReviewBlankException.class)
+  @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+  protected AppError reviewBlankException(
+          HttpServletRequest request, ReviewBlankException e) {
+    return AppError.builder()
+            .code(Integer.valueOf(getMessage("reviewBlank.code")))
+            .message(getMessage("reviewBlank.message"))
             .build();
   }
 
