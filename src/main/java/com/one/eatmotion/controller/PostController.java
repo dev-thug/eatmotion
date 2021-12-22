@@ -1,5 +1,6 @@
 package com.one.eatmotion.controller;
 
+import com.one.eatmotion.advice.exception.PostBlankException;
 import com.one.eatmotion.dto.PostDTO;
 import com.one.eatmotion.entity.Board;
 import com.one.eatmotion.entity.Post;
@@ -16,80 +17,86 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Api(tags = {"3. 게시판 기능"})
 @RestController
 @RequiredArgsConstructor
 public class PostController {
 
-    private final BoardRepository boardRepository;
-    private final PostService postService;
+  private final BoardRepository boardRepository;
+  private final PostService postService;
 
-    @ApiImplicitParams({
-            @ApiImplicitParam(
-                    name = "authToken",
-                    value = "허가된 유요한 토큰",
-                    required = true,
-                    dataType = "String",
-                    paramType = "header")
-    })
-    @ApiOperation(value = "게시글 작성", notes = "회원이 게시판에 게시글을 작성한다")
-    @PostMapping("post/{id}")
-    public Post save(@RequestBody PostDTO post, @PathVariable Long id) {
-        return postService.writePost(post, id);
+  @ApiImplicitParams({
+    @ApiImplicitParam(
+        name = "authToken",
+        value = "허가된 유요한 토큰",
+        required = true,
+        dataType = "String",
+        paramType = "header")
+  })
+  @ApiOperation(value = "게시글 작성", notes = "회원이 게시판에 게시글을 작성한다")
+  @PostMapping("post/{id}")
+  public Post save(
+      @Valid @RequestBody PostDTO post, @PathVariable Long id, BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+      throw new PostBlankException();
     }
+    return postService.writePost(post, id);
+  }
 
-    @ApiImplicitParams({
-            @ApiImplicitParam(
-                    name = "authToken",
-                    value = "허가된 유요한 토큰",
-                    required = true,
-                    dataType = "String",
-                    paramType = "header")
-    })
-    @ApiOperation(value = "게시글 수정", notes = "회원이 게시판에 게시글을 수정한다")
-    @PutMapping("post/{id}")
-    public Post update(@RequestBody PostDTO post, @PathVariable Long id) throws Exception {
-        return postService.updatePost(post, id);
-    }
-    @Secured({"ROLE_ADMIN","ROLE_USER"})
-    @PostMapping("board")
-    @ApiOperation(value = "게시판 생성", notes = "게시글을 작성할 게시판을 생성한다")
-    public Board save(@RequestParam String name) {
-        return boardRepository.save(Board.builder().name(name).build());
-    }
+  @ApiImplicitParams({
+    @ApiImplicitParam(
+        name = "authToken",
+        value = "허가된 유요한 토큰",
+        required = true,
+        dataType = "String",
+        paramType = "header")
+  })
+  @ApiOperation(value = "게시글 수정", notes = "회원이 게시판에 게시글을 수정한다")
+  @PutMapping("post/{id}")
+  public Post update(@RequestBody PostDTO post, @PathVariable Long id) throws Exception {
+    return postService.updatePost(post, id);
+  }
 
-    @GetMapping("posts/{boardId}")
-    @ApiOperation(value = "게시글 조회", notes = "게시판에 해당하는 게시글을 조회한다")
-    public Page<Post> findAll(
-            @PathVariable Long boardId,
-            @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+  @Secured({"ROLE_ADMIN", "ROLE_USER"})
+  @PostMapping("board")
+  @ApiOperation(value = "게시판 생성", notes = "게시글을 작성할 게시판을 생성한다")
+  public Board save(@RequestParam String name) {
+    return boardRepository.save(Board.builder().name(name).build());
+  }
 
-        return postService.findAllByBoard(boardId, pageable);
-    }
+  @GetMapping("posts/{boardId}")
+  @ApiOperation(value = "게시글 조회", notes = "게시판에 해당하는 게시글을 조회한다")
+  public Page<Post> findAll(
+      @PathVariable Long boardId,
+      @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
 
-    @GetMapping("post/{postId}")
-    @ApiOperation(value = "게시글 단일 조회", notes = "게시판에 해당하는 게시글을 단일 조회한다")
-    public Post findById(
-            @PathVariable Long postId
-    ) {
+    return postService.findAllByBoard(boardId, pageable);
+  }
 
-        return postService.findAllById(postId);
-    }
+  @GetMapping("post/{postId}")
+  @ApiOperation(value = "게시글 단일 조회", notes = "게시판에 해당하는 게시글을 단일 조회한다")
+  public Post findById(@PathVariable Long postId) {
 
-    @ApiImplicitParams({
-            @ApiImplicitParam(
-                    name = "authToken",
-                    value = "허가된 유요한 토큰",
-                    required = true,
-                    dataType = "String",
-                    paramType = "header")
-    })
-    @ApiOperation(value = "게시글 삭제", notes = "회원이 게시판에 게시글을 삭제한다")
-    @DeleteMapping("post/{id}")
-    public ResponseEntity delete(@PathVariable Long id) throws Exception {
-        postService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
+    return postService.findAllById(postId);
+  }
+
+  @ApiImplicitParams({
+    @ApiImplicitParam(
+        name = "authToken",
+        value = "허가된 유요한 토큰",
+        required = true,
+        dataType = "String",
+        paramType = "header")
+  })
+  @ApiOperation(value = "게시글 삭제", notes = "회원이 게시판에 게시글을 삭제한다")
+  @DeleteMapping("post/{id}")
+  public ResponseEntity delete(@PathVariable Long id) throws Exception {
+    postService.delete(id);
+    return ResponseEntity.noContent().build();
+  }
 }

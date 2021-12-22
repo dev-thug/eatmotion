@@ -19,3 +19,6 @@ reserveTimeOver:
 notAppropriateRegister:
   code: "4100"
   message: "회원가입 정보를 올바르게 작성해주세요"
+postBlank:
+  code: "4200"
+  message: "제목과 내용을 작성해주세요"

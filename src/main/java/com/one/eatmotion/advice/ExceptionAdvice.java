@@ -83,6 +83,17 @@ public class ExceptionAdvice {
         .message(getMessage("notAppropriateRegister.message"))
         .build();
   }
+  //PostBlankException
+  @ExceptionHandler(PostBlankException.class)
+  @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+  protected AppError postBlankException(
+          HttpServletRequest request, PostBlankException e) {
+    return AppError.builder()
+            .code(Integer.valueOf(getMessage("postBlank.code")))
+            .message(getMessage("postBlank.message"))
+            .build();
+  }
+
 
   // code 정보에 해당하는 메시지를 조회합니다.
   private String getMessage(String code) {
