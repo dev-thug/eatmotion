@@ -7,6 +7,8 @@ import com.one.eatmotion.entity.User;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,6 +24,7 @@ public class TextReview extends CommonDate {
     @GeneratedValue
     private Long id;
 
+    @NotBlank
     private String content;
 
     private Double grade;

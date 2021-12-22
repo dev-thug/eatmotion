@@ -49,7 +49,7 @@ public class TextReviewService {
     TextReview textReview = textReviewRepository.getById(id);
     User user = userService.getAuthedUser();
     if (!Objects.equals(user.getId(), textReview.getUser().getId())) {
-      throw new AccessDeniedException("접근이 권한이 없습니다.");
+      throw new AccessDeniedException("접근 권한이 없습니다.");
     }
     textReview.setContent(content);
     textReview.setGrade(sentimentService.sentiment(content));

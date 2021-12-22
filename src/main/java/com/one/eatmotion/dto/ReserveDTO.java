@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ReserveDTO {
 
+  /** Todo: 유효성 체크 필요 **/
+
   LocalDateTime reserveDateTime;
 
   Integer reserveNumberOfPeople;

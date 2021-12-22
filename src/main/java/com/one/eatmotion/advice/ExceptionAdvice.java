@@ -67,12 +67,41 @@ public class ExceptionAdvice {
 
   @ExceptionHandler(ReserveTimeOverException.class)
   @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
-  protected AppError reserveTimeOverException(HttpServletRequest request, AccessDeniedException e) {
+  protected AppError reserveTimeOverException(HttpServletRequest request, ReserveTimeOverException e) {
     return AppError.builder()
         .code(Integer.valueOf(getMessage("reserveTimeOver.code")))
         .message(getMessage("reserveTimeOver.message"))
         .build();
   }
+
+  @ExceptionHandler(NotAppropriateRegisterException.class)
+  @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+  protected AppError notAppropriateRegisterException(
+      HttpServletRequest request, NotAppropriateRegisterException e) {
+    return AppError.builder()
+        .code(Integer.valueOf(getMessage("notAppropriateRegister.code")))
+        .message(getMessage("notAppropriateRegister.message"))
+        .build();
+  }
+  @ExceptionHandler(PostBlankException.class)
+  @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+  protected AppError postBlankException(
+          HttpServletRequest request, PostBlankException e) {
+    return AppError.builder()
+            .code(Integer.valueOf(getMessage("postBlank.code")))
+            .message(getMessage("postBlank.message"))
+            .build();
+  }
+  @ExceptionHandler(ReviewBlankException.class)
+  @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+  protected AppError reviewBlankException(
+          HttpServletRequest request, ReviewBlankException e) {
+    return AppError.builder()
+            .code(Integer.valueOf(getMessage("reviewBlank.code")))
+            .message(getMessage("reviewBlank.message"))
+            .build();
+  }
+
 
   // code 정보에 해당하는 메시지를 조회합니다.
   private String getMessage(String code) {

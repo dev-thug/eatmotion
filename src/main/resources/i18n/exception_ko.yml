@@ -16,3 +16,12 @@ accessDenied:
 reserveTimeOver:
   code: "6000"
   message: "예약 취소와 변경은 예약시간 2시간 전까지 가능합니다."
+notAppropriateRegister:
+  code: "4100"
+  message: "회원가입 정보를 올바르게 작성해주세요"
+postBlank:
+  code: "4200"
+  message: "제목과 내용을 작성해주세요"
+reviewBlank:
+  code: "4300"
+  message: "리뷰를 작성해주세요"

@@ -1,6 +1,7 @@
 package com.one.eatmotion.controller;
 
 import com.one.eatmotion.advice.exception.NotFoundEmailException;
+import com.one.eatmotion.advice.exception.ReviewBlankException;
 import com.one.eatmotion.entity.review.FaceReview;
 import com.one.eatmotion.entity.review.TextReview;
 import com.one.eatmotion.service.FaceReviewService;
@@ -10,9 +11,11 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.util.List;
 import java.util.UUID;
@@ -41,7 +44,10 @@ public class ReviewController {
     })
     @PostMapping("/text-review/{shopId}")
     @ApiOperation(value = "텍스트 리뷰 작성", notes = "텍스트 리뷰 작성합니다.")
-    public TextReview saveReview(@RequestBody String content, @PathVariable Long shopId) {
+    public TextReview saveReview(@Valid @RequestBody String content, @PathVariable Long shopId, BindingResult bindingResult) {
+    if (bindingResult.hasErrors()){
+        throw new ReviewBlankException();
+    }
         return textReviewService.saveTextReview(content, shopId);
     }
 
