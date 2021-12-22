@@ -1,5 +1,6 @@
 package com.one.eatmotion.entity.review;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.one.eatmotion.entity.CommonDate;
 import com.one.eatmotion.entity.Shop;
 import com.one.eatmotion.entity.User;
@@ -25,10 +26,11 @@ public class TextReview extends CommonDate {
 
     private Double grade;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+  @JsonIgnore
+  @ManyToOne(fetch = FetchType.LAZY)
+  private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Shop shop;
-
+  @JsonIgnore
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Shop shop;
 }

@@ -3,6 +3,7 @@ package com.one.eatmotion.service;
 import com.one.eatmotion.entity.User;
 import com.one.eatmotion.entity.review.FaceReview;
 import com.one.eatmotion.repository.FaceReviewRepository;
+import com.one.eatmotion.service.naverApi.NaverFaceRecognition;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
