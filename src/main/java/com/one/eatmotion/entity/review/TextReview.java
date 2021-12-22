@@ -26,11 +26,10 @@ public class TextReview extends CommonDate {
 
     private Double grade;
 
-  @JsonIgnore
-  @ManyToOne(fetch = FetchType.LAZY)
+    /** **/
+  @ManyToOne
   private User user;
 
-  @JsonIgnore
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   private Shop shop;
 }
