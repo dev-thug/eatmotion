@@ -4,8 +4,6 @@ import com.one.eatmotion.advice.exception.NotFoundEmailException;
 import com.one.eatmotion.entity.review.FaceReview;
 import com.one.eatmotion.entity.review.TextReview;
 import com.one.eatmotion.service.FaceReviewService;
-import com.one.eatmotion.service.NaverFaceRecognition;
-import com.one.eatmotion.service.NaverSentiment;
 import com.one.eatmotion.service.TextReviewService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

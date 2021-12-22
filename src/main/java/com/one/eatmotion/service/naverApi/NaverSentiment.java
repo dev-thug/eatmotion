@@ -1,4 +1,4 @@
-package com.one.eatmotion.service;
+package com.one.eatmotion.service.naverApi;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

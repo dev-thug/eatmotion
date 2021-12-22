@@ -3,6 +3,7 @@ package com.one.eatmotion.service;
 import com.one.eatmotion.entity.User;
 import com.one.eatmotion.entity.review.TextReview;
 import com.one.eatmotion.repository.TextReviewRepository;
+import com.one.eatmotion.service.naverApi.NaverSentiment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,12 @@ public class TextReviewService {
     textReview.setUser(user);
     textReview.setShop(shopService.findById(shopId));
     textReview.setGrade(sentimentService.sentiment(textReview.getContent()));
-    return textReviewRepository.save(textReview);
+
+    /** updateShopGrade를* */
+    TextReview savedTextReview = textReviewRepository.save(textReview);
+    shopService.updateShopGrade(shopId);
+
+    return savedTextReview;
   }
 
   @Transactional

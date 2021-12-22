@@ -1,4 +1,4 @@
-package com.one.eatmotion.service;
+package com.one.eatmotion.service.naverApi;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
