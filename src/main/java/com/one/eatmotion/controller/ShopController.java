@@ -16,7 +16,6 @@ import java.util.List;
 @Api(tags = {"5. 맛집"})
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public class ShopController {
 
     private final ShopService shopService;
@@ -46,6 +45,12 @@ public class ShopController {
     @ApiOperation(value = "사용자 주변 음식점", notes = "사용자 주변의 음식점의 좌표를 반환합니다.")
     public List<Shop> findShopByCoordinates(Double userX, Double userY, Double distance) {
         return shopService.findShopByCoordinates(userX, userY, distance);
+    }
+
+    @GetMapping("/shop/{id}")
+    @ApiOperation(value = "음식점 단건 조회", notes = "음식점의 정보를 단일건 조회 합니다.")
+    public Shop findById(@PathVariable Long id) {
+        return shopService.findById(id);
     }
 
 

@@ -20,7 +20,6 @@ import java.util.UUID;
 @Api(tags = {"6. 음식점 리뷰 작성"})
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public class ReviewController {
 
     private final TextReviewService textReviewService;
@@ -91,7 +90,7 @@ public class ReviewController {
     })
     @PutMapping("/text-review/{shopId}")
     @ApiOperation(value = "텍스트 리뷰 수정", notes = "텍스트 리뷰 수정합니다.")
-    public TextReview updateReview(@PathVariable Long shopId, String content) {
+    public TextReview updateReview(@PathVariable Long shopId, @RequestBody String content) {
         return textReviewService.updateTextReview(shopId, content);
     }
 
