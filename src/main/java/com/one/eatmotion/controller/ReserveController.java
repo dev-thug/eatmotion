@@ -56,6 +56,7 @@ public class ReserveController {
 
     /**
      * 예약 상세정보 확인하는 부분
+     * Todo: error!!!!!!!!!!!
      */
     @ApiOperation(value = "예약 상세 조회", notes = "회원이 예약한 정보 상세 조회")
     @ApiImplicitParams({
@@ -69,7 +70,7 @@ public class ReserveController {
     @GetMapping("/reserve/{id}")
     public Reserve listDetailReserve(@PathVariable Long id) {
         System.out.println("try listReserve/{reserveId}");
-        return reserveService.getDetailListByReserveId(id);
+        return reserveService.findAllById(id);
     }
 
     /**
