@@ -49,14 +49,11 @@ public class ReserveService {
 
     User user = userService.getAuthedUser();
 
-    /** Todo: 왜 System.out.println을 빼면 에러가 나는지 모르겠음 * */
-    System.out.println(reserveRepository.getDetailListById(id));
-
-    if (!Objects.equals(user.getId(), reserveRepository.getById(id).getUser().getId())) {
+    if (!Objects.equals(
+        user.getId(), reserveRepository.findById(id).orElseThrow().getUser().getId())) {
       throw new AccessDeniedException("접근이 권한이 없습니다.");
     }
-
-    return reserveRepository.getDetailListById(id);
+    return reserveRepository.findById(id).orElseThrow();
   }
 
   @Transactional
