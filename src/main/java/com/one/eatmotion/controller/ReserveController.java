@@ -49,11 +49,6 @@ public class ReserveController {
     return reserveService.findAllByUser();
   }
 
-  /**
-   * 예약 상세정보 확인하는 부분 Todo: error!!!!!!!!!!!
-   *
-   * @return
-   */
   @ApiOperation(value = "예약 상세 조회", notes = "회원이 예약한 정보 상세 조회")
   @ApiImplicitParams({
     @ApiImplicitParam(
@@ -67,6 +62,8 @@ public class ReserveController {
   public Reserve listDetailReserve(@PathVariable Long id) {
     return reserveService.findReserveById(id);
   }
+
+
 
   @ApiImplicitParams({
     @ApiImplicitParam(

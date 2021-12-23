@@ -85,7 +85,6 @@ public class ReviewController {
     }
 
 
-    // TODO: 2021-12-18 수정이 작동 확인
     @ApiImplicitParams({
             @ApiImplicitParam(
                     name = "authToken",
