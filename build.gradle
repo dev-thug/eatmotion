@@ -43,6 +43,10 @@ dependencies {
     // 메시지 소스 라이브러리
     implementation 'net.rakugakibox.util:yaml-resource-bundle:1.1'
 
+    // Redis 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'it.ozimov:embedded-redis:0.7.2'
+    
 //    //Spring batch 관련
 //    implementation 'org.springframework.boot:spring-boot-starter-batch'
 //    implementation 'org.springframework.boot:spring-boot-starter-quartz'
