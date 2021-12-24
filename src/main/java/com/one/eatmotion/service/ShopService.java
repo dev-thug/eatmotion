@@ -1,11 +1,13 @@
 package com.one.eatmotion.service;
 
 import com.one.eatmotion.config.distance.Distance;
+import com.one.eatmotion.config.redis.CacheKey;
 import com.one.eatmotion.entity.Shop;
 import com.one.eatmotion.entity.review.TextReview;
 import com.one.eatmotion.repository.ShopRepository;
 import com.one.eatmotion.repository.TextReviewRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +36,7 @@ public class ShopService {
         shop.setGrade(shopGrade);
     }
 
+    @Cacheable(value = CacheKey.SHOP, key = "#id", unless = "#result == null")
     public Shop findById(Long id) {
         return shopRepository.findById(id).orElseThrow();
     }

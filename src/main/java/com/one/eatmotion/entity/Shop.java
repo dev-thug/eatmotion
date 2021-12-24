@@ -2,10 +2,13 @@ package com.one.eatmotion.entity;
 
 import com.one.eatmotion.entity.review.TextReview;
 import lombok.*;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
+@Proxy(lazy = false)
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +17,7 @@ import java.util.List;
 @Setter
 @ToString
 @Table(name = "Shop")
-public class Shop {
+public class Shop implements Serializable {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id
@@ -34,6 +37,6 @@ public class Shop {
 
   private Double grade;
 
-  @ElementCollection private List<String> menu;
+
 
 }
