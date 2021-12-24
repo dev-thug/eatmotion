@@ -36,5 +36,4 @@ public class Shop {
 
   @ElementCollection private List<String> menu;
 
-  // TODO: 2021-12-04 음식점 API에서 필요한 정보 추출후 담을 변수 선언
 }

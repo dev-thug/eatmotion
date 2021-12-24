@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface TextReviewRepository extends JpaRepository<TextReview, Long> {
-    List<TextReview> findAllByShopId(Long shopId);
+    List<TextReview> findAllByShopIdOrderByIdDesc(Long shopId);
 
     List<TextReview> findAllByShop(Shop shop);
 }

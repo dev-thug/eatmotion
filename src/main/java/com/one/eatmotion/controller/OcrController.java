@@ -46,8 +46,6 @@ public class OcrController {
 					return "해당 음식점은 등록되지 않았습니다.";
 
       } catch (IllegalStateException | IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 					return "error";
 				}
     }
@@ -66,8 +64,6 @@ public class OcrController {
 				System.out.println(checkaddress);
 				return checkaddress;
       } catch (IllegalStateException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 				return null;
 			}
 

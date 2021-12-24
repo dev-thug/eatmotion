@@ -34,7 +34,7 @@ public class Distance {
    * @param lon1 지점 1 경도
    * @param lat2 지점 2 위도
    * @param lon2 지점 2 경도
-   * @return Todo: 매장 좌표값은 서울공공데이터API에서 받아온 거 있고 사용자 좌표 받아와서 사용하면 됨 현재 대부분의 브라우저(google chrome)에서는
+   * @return  매장 좌표값은 서울공공데이터API에서 받아온 거 있고 사용자 좌표 받아와서 사용하면 됨 현재 대부분의 브라우저(google chrome)에서는
    *     HTML5 GeoLocation을 사용할 수 없음, 받아오려면 https 환경 구축해야한다고 함 도메인 구해서 certbot에서 어쩌고 하면 개쉽게 된다고 함
    */
   public double distance(double lat1, double lon1, double lat2, double lon2) {

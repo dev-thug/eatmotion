@@ -24,7 +24,7 @@ public class TextReviewService {
 
   /** onetoone으로 Receipt랑 Face 관계 맺고 가져오는 방법 */
   public List<TextReview> findAllByShopId(Long shopId) {
-    return textReviewRepository.findAllByShopId(shopId);
+    return textReviewRepository.findAllByShopIdOrderByIdDesc(shopId);
   }
 
 
