@@ -32,6 +32,7 @@ public class UserController {
   })
   @ApiOperation(value = "내 정보 조회", notes = "회원이 자신의 정보를 조회")
   @GetMapping(value = "me")
+  @Secured("ROLE_ADMIN")
   public ResponseEntity<User> findMe() {
     return ResponseEntity.ok(userService.findUser());
   }
