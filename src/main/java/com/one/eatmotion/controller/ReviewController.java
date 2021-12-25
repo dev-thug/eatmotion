@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,6 +45,7 @@ public class ReviewController {
     })
     @PostMapping("/text-review/{shopId}")
     @ApiOperation(value = "텍스트 리뷰 작성", notes = "텍스트 리뷰 작성합니다.")
+    @Secured("ROLE_ADMIN")
     public TextReview saveReview(@Valid @RequestBody String content, @PathVariable Long shopId, BindingResult bindingResult) {
     if (bindingResult.hasErrors()){
         throw new ReviewBlankException();
@@ -61,6 +63,7 @@ public class ReviewController {
     })
     @PostMapping(value = "/face-review/{shopId}")
     @ApiOperation(value = "사진 리뷰 작성", notes = "사진 리뷰 작성합니다.")
+    @Secured("ROLE_ADMIN")
     public FaceReview saveFaceReview(MultipartFile uploadFile, @PathVariable Long shopId)
             throws Exception {
         if (uploadFile != null) {
@@ -95,6 +98,7 @@ public class ReviewController {
     })
     @PutMapping("/text-review/{shopId}")
     @ApiOperation(value = "텍스트 리뷰 수정", notes = "텍스트 리뷰 수정합니다.")
+    @Secured("ROLE_ADMIN")
     public TextReview updateReview(@PathVariable Long shopId, @RequestBody String content) {
         return textReviewService.updateTextReview(shopId, content);
     }
@@ -108,6 +112,7 @@ public class ReviewController {
                     paramType = "header")
     })
     @ApiOperation(value = "텍스트 리뷰 삭제", notes = "작성한 텍스트 리뷰를 삭제 합니다.")
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("/text-review/{reviewId}")
     public void deleteReview(@PathVariable Long reviewId) {
         textReviewService.deleteById(reviewId);
