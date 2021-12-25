@@ -40,6 +40,7 @@ public class PostController {
   })
   @ApiOperation(value = "게시글 작성", notes = "회원이 게시판에 게시글을 작성한다")
   @PostMapping("post/{id}")
+  @Secured("ROLE_ADMIN")
   public Post save(
       @Valid @RequestBody PostDTO post, @PathVariable Long id, BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
@@ -58,6 +59,7 @@ public class PostController {
   })
   @ApiOperation(value = "게시글 수정", notes = "회원이 게시판에 게시글을 수정한다")
   @PutMapping("post/{id}")
+  @Secured("ROLE_ADMIN")
   public Post update(@RequestBody PostDTO post, @PathVariable Long id) throws Exception {
     return postService.updatePost(post, id);
   }
@@ -95,6 +97,7 @@ public class PostController {
   })
   @ApiOperation(value = "게시글 삭제", notes = "회원이 게시판에 게시글을 삭제한다")
   @DeleteMapping("post/{id}")
+  @Secured("ROLE_ADMIN")
   public ResponseEntity delete(@PathVariable Long id) throws Exception {
     postService.delete(id);
     return ResponseEntity.noContent().build();
