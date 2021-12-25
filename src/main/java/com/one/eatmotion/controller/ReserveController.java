@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class ReserveController {
         paramType = "header")
   })
   @PostMapping("/reserve/{shopId}")
+  @Secured("ROLE_ADMIN")
   public Reserve makeReserve(@PathVariable Long shopId, @RequestBody ReserveDTO reserve) {
     return reserveService.makeReserve(reserve, shopId);
   }
@@ -44,6 +46,7 @@ public class ReserveController {
         dataType = "String",
         paramType = "header")
   })
+  @Secured("ROLE_ADMIN")
   @ApiOperation(value = "예약 조회", notes = "내가 예약한 음식점 리스트")
   public List<Reserve> listReserve() {
     return reserveService.findAllByUser();
@@ -58,6 +61,7 @@ public class ReserveController {
         dataType = "String",
         paramType = "header")
   })
+  @Secured("ROLE_ADMIN")
   @GetMapping("/reserve/{id}")
   public Reserve listDetailReserve(@PathVariable Long id) {
     return reserveService.findReserveById(id);
@@ -73,6 +77,7 @@ public class ReserveController {
         dataType = "String",
         paramType = "header")
   })
+  @Secured("ROLE_ADMIN")
   @PutMapping("/reserve/{id}")
   @ApiOperation(value = "예약 변경", notes = "회원이 자신이 예약한 정보를 수정")
   public Reserve editReserve(@PathVariable Long id, @RequestBody ReserveDTO reserve) {
@@ -89,6 +94,7 @@ public class ReserveController {
         dataType = "String",
         paramType = "header")
   })
+  @Secured("ROLE_ADMIN")
   @ApiOperation(value = "예약 취소", notes = "회원이 예약을 취소한다")
   @DeleteMapping("/reserve/{reserveId}")
   public void deleteReserve(@PathVariable Long reserveId) {
